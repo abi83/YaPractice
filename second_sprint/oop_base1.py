@@ -31,5 +31,3 @@ def print_contact():
 # и она напечатает на экране данные контактов mike и vlad
 
 print_contact()
-#commentxx
-#comment

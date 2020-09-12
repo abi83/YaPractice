@@ -3,7 +3,7 @@ class Contact:
         self.name = name
         self.phone = phone
         self.address = address
-        self.birthday = birthday # добавьте свойство birthday
+        self.birthday = birthday  # добавьте свойство birthday
         print(f"Создаём новый контакт {name}")
 
 
@@ -26,6 +26,7 @@ vlad = Contact(
 def print_contact():
     print(f"{mike.name} — адрес: {mike.address}, телефон: {mike.phone}, день рождения: {mike.birthday}")
     print(f"{vlad.name} — адрес: {vlad.address}, телефон: {vlad.phone}, день рождения: {vlad.birthday}")
+
 
 # здесь вызовите функцию print_contact(),
 # и она напечатает на экране данные контактов mike и vlad

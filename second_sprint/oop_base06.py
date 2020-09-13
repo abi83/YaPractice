@@ -1,3 +1,5 @@
+# Наследование ООП. Задача 3
+
 class Human:
     def __init__(self, name):
         self.name = name
@@ -21,8 +23,8 @@ class Student(Human):
     #  которому Student задаёт вопрос;
     #  параметр question — это просто строка
     #  имя объекта и текст вопроса задаются при вызове метода ask_question
-    @staticmethod
-    def ask_question(someone, question):
+
+    def ask_question(self, someone, question):
         # напечатайте на экран вопрос в нужном формате
         print(f'{someone.name}, {question}')
         # запросите ответ на вопрос у someone
@@ -59,8 +61,10 @@ class Mentor(Human):
     def answer_question(self, question):
         if question == 'как устроиться работать питонистом?':
             print('Сейчас расскажу.')
-        else:
+        elif question == 'мне грустненько, что делать?':
             print('Отдохни и возвращайся с вопросами по теории.')
+        else:
+            super().answer_question(question)
 
 
 # следующий код менять не нужно, он работает, мы проверяли

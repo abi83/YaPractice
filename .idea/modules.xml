@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/YaPractice.iml" filepath="$PROJECT_DIR$/.idea/YaPractice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../app/.idea/app.iml" filepath="$PROJECT_DIR$/../app/.idea/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../hw_python_oop/.idea/hw_python_oop.iml" filepath="$PROJECT_DIR$/../hw_python_oop/.idea/hw_python_oop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../python/.idea/py_solution.iml" filepath="$PROJECT_DIR$/../python/.idea/py_solution.iml" />
     </modules>
   </component>
 </project>

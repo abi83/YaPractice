@@ -33,5 +33,3 @@ def print_contact():
 
 print_contact()
 
-
-

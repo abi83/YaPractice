@@ -8,4 +8,7 @@
     <orderEntry type="module" module-name="py_solution" />
     <orderEntry type="module" module-name="app" />
   </component>
+  <component name="PackageRequirementsSettings">
+    <option name="requirementsPath" value="" />
+  </component>
 </module>

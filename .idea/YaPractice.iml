@@ -7,6 +7,8 @@
     <orderEntry type="module" module-name="hw_python_oop" />
     <orderEntry type="module" module-name="py_solution" />
     <orderEntry type="module" module-name="app" />
+    <orderEntry type="module" module-name="app" />
+    <orderEntry type="module" module-name="yy3" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />

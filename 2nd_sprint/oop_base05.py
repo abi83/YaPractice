@@ -9,8 +9,11 @@ class Point:
 
     # считаем расстояние между двумя точками в км
     def distance(self, other):
-        cos_d = sin(self.latitude) * sin(other.latitude) + cos(self.latitude) * cos(other.latitude) * cos(
-        self.longitude - other.longitude)
+        cos_d = (
+                sin(self.latitude) * sin(other.latitude) +
+                cos(self.latitude) * cos(other.latitude) *
+                cos(self.longitude - other.longitude)
+                 )
 
         return 6371 * acos(cos_d)
 

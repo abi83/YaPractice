@@ -35,23 +35,25 @@ class Contact:
 
 
 test_values = {
-    (1945, True): [['simple_name', 1945, True], ['Старейшина', 'Программист']],
-    (1979, True): [['simple_name', 1979, True], ['Олдскул', 'Программист']],
-    (1980, True): [['simple_name', 1980, True], ['Молодой', 'Программист']],
-    (1981, True): [['simple_name', 1981, True], ['Молодой', 'Программист']],
-    (1945, False): [['simple_name', 1945, False], ['Старейшина', 'Нормальный']],
-    (1979, False): [['simple_name', 1979, False], ['Олдскул', 'Нормальный']],
-    (1980, False): [['simple_name', 1980, False], ['Молодой', 'Нормальный']],
-    (1981, False): [['simple_name', 1981, False], ['Молодой', 'Нормальный']],
+    ('Testman', 1945, True): ['Старейшина', 'Программист'],
+    ('Testman', 1979, True): ['Олдскул', 'Программист'],
+    ('Testman', 1980, True): ['Молодой', 'Программист'],
+    ('Testman', 1981, True): ['Молодой', 'Программист'],
+    ('Testman', 1945, False): ['Старейшина', 'Нормальный'],
+    ('Testman', 1979, False): ['Олдскул', 'Нормальный'],
+    ('Testman', 1980, False): ['Молодой', 'Нормальный'],
+    ('Testman', 1981, False): ['Молодой', 'Нормальный'],
 }
 
 for key in test_values:
-    loop_man = Contact(*test_values[key][0])
+    loop_man = Contact(*key)
+
     test_methods = [
         loop_man.age_define,
         loop_man.programmer_define,
     ]
     print('Testing', loop_man.show_contact(), 'OK!')
+
     for i in range(len(test_methods)):
         print('    Testing', test_methods[i].__name__, 'OK!')
-        assert test_methods[i]() == test_values[key][1][i], f'Жопа с функцией {i}'
+        assert test_methods[i]() == test_values[key][i], f'Method {i} is down'

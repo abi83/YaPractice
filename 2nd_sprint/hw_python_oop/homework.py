@@ -252,5 +252,4 @@ class Record:
 
 
 if __name__ == '__main__':
-
     pass

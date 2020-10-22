@@ -62,3 +62,47 @@ print(long_heavy(2))
 # 4
 print(long_heavy(2))
 # 4
+
+
+# Напишите декоратор, оптимизирующий работу декорируемой функции. Декоратор
+# должен сохранять результат работы функции на ближайшие 3 запуска и вместо
+# выполнения функции возвращать сохранённый результат.
+
+def cache3(func):
+    """A 3_time_cache decorator"""
+    _counts = {'counter': 0}
+
+    def added_features(*args, **kwargs):
+        if _counts['counter'] == 0:
+            result = _counts['result'] = func(*args, **kwargs)
+            _counts['counter'] += 1
+        elif _counts['counter'] <3:
+            result = _counts['result']
+            _counts['counter'] += 1
+        elif _counts['counter'] == 3:
+            result = _counts['result'] = func(*args, **kwargs)
+            _counts['counter'] = 0
+
+        return result
+
+    return added_features
+
+
+@cache3
+def heavy():
+    print('Сложные вычисления')
+    return 1
+
+
+print(heavy())
+# Сложные вычисления
+# 1
+print(heavy())
+# 1
+print(heavy())
+# 1
+
+# Опять кеш устарел, надо вычислять заново
+print(heavy())
+# Сложные вычисления
+# 1

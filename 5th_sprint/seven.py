@@ -45,11 +45,13 @@ test_values = {
     (1981, False): [['simple_name', 1981, False], ['Молодой', 'Нормальный']],
 }
 
-test_base = []
-
 for key in test_values:
     loop_man = Contact(*test_values[key][0])
-    assert loop_man.age_define() == test_values[key][1][0], 'Жопа с age_define'
-    assert loop_man.programmer_define() == test_values[key][1][1], 'Жопа с programmer_define'
-    print('=====', loop_man.show_contact(),'=====')
-
+    test_methods = [
+        loop_man.age_define,
+        loop_man.programmer_define,
+    ]
+    print('Testing', loop_man.show_contact(), 'OK!')
+    for i in range(len(test_methods)):
+        print('    Testing', test_methods[i].__name__, 'OK!')
+        assert test_methods[i]() == test_values[key][1][i], f'Жопа с функцией {i}'

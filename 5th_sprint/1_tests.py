@@ -3,7 +3,7 @@ def we_crush_all(name: str) -> str:
 
 
 print(we_crush_all('Наташа'))
-# print(we_crush_all(100))
+#print(we_crush_all(100))
 
 
 from typing import Optional
@@ -44,7 +44,4 @@ x = 12210
 x = 'Строка'
 x = True
 x = None
-# Можно всё! Переменная x примет любой тип данных. 
-
-
-
+# Можно всё! Переменная x примет любой тип данных.

@@ -2,14 +2,7 @@
 {% block title %} {{ post.title }} | Yatube{% endblock %}
 {% block header %} {{ post.title }} {% endblock %}
 {% block content %}
-  <h3>
-    Автор: {{ post.author.get_full_name }},<br>
-    Дата публикации: {{ post.pub_date|date }},<br>
-    {% if post.group %}
-      Группа: <a href = "{% url 'group-posts' post.group.slug %}">
-                {{ post.group }}
-              </a>
-    {% endif %}
-  </h3>
-  <p>{{ post.text|linebreaksbr }}</p>
+
+  {% include "post_card.html" %}
+
 {% endblock %}

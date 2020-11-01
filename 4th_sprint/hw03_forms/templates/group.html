@@ -9,11 +9,9 @@
     <h2>
       <a href="{% url 'post-detail' post.id %}"> {{ post.title }} </a>
     </h2>
-    <h3>
-      Автор: {{ post.author.get_full_name }}, <br>
-      Дата публикации: {{ post.pub_date|date }},
-    </h3>
-    <p> {{ post.text|linebreaksbr }} </p>
+
+    {% include "post_card.html" with hide_group="True" %}
+
     {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}
 

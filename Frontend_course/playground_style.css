@@ -1,0 +1,49 @@
+h1 {
+  font-size: 24px;
+  text-transform: uppercase;
+  font-style: italic;
+  font-family: 'William', serif;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-top: 34px;
+  font-weight: normal;
+  color: white;
+}
+
+h2 {
+  font-size: 30px;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: white;
+}
+
+h3 {
+  font-family: 'William', serif;
+  margin: 0;
+  font-size: 15px;
+  text-transform: uppercase;
+  line-height: 18px;
+  font-weight: normal;
+  color: white;
+}
+
+img {
+  width: 230px;
+  margin-bottom: 50px;
+}
+
+p {
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+}
+
+div {
+  margin: auto;
+  background-color: mediumaquamarine;
+  width: 500px;
+  height: 500px;
+  text-align: center;
+  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+}

@@ -7,19 +7,8 @@
     <h2>
       <a href="{% url 'post-detail' post.id %}"> {{ post.title }} </a>
     </h2>
-    <h3>
-      Автор: {{ post.author.get_full_name }},<br>
-      Дата публикации: {{ post.pub_date|date }},<br>
-      {% if post.group %}
-        Группа: <a href = "{% url 'group-posts' post.group.slug %}">
-                  {{ post.group }}
-                </a>
-      {% endif %}
-    </h3>
-    <p>
-      {{ post.text|linebreaksbr|truncatechars:500 }}
-      <a href="{% url 'post-detail' post.id %}">далее</a>
-    </p>
+
+    {% include "post_card.html" %}
 
     {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}

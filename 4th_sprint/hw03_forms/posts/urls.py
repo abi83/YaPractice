@@ -13,7 +13,7 @@ urlpatterns = [
          views.groups_list,
          name='groups'),
     path('group/<slug:slug>/',
-         views.group_detail,
+         views.group_posts,
          name='group-posts'),
     path('new/',
          views.new_post,

@@ -63,7 +63,7 @@ for key in test_values:
 
 # второй вариант
 test_methods = Contact('friend', 1900, False).__dir__()
-# создаем список названий методов класса. Методо __dir__ переопределен
+# создаем список названий методов класса. Метод __dir__ переопределен
 test_values = {
     (1945, True): {'age_define': 'Старейшина', 'programmer_define': 'Программист'},
     (1979, True): {'age_define': 'Олдскул', 'programmer_define': 'Программист'},

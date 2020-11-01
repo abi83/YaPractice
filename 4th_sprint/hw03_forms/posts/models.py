@@ -16,7 +16,7 @@ class Group(models.Model):
     )
     description = models.TextField(
         verbose_name='Описание группы',
-        help_text='Описание долджно отражать смысл группы, ее содержание.',
+        help_text='Напишите о чем эта группа, какие посты в ней будут',
     )
     active = models.BooleanField(
         default=True,
@@ -31,16 +31,24 @@ class Group(models.Model):
 
 
 class Post(models.Model):
+
+    def default_title(self):
+        words = self.text.split()
+        return ' '.join(words[:4]) + '...'
+
+    def save(self, *args, **kwargs):
+        if not self.title:
+            self.title = self.default_title()
+        super(Post, self).save(*args, **kwargs)
+
     title = models.CharField(
         max_length=200,
         verbose_name='Название поста',
-        help_text='Назовите пост так, чтобы его хотелось открыть.',
-        null=True,
+        help_text='Назовите пост или оставьте пустым',
+        null=False,
     )
     text = models.TextField(
         verbose_name='Текст вашего поста',
-        help_text='Напишите сво интересную и захватывающую историю',
-        null=False,
     )
     pub_date = models.DateTimeField(
         verbose_name='Дата публикации',
@@ -49,6 +57,9 @@ class Post(models.Model):
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
+        verbose_name='Автор поста',
+        null=False,
+        related_name='posts',
     )
     group = models.ForeignKey(
         Group,
@@ -57,12 +68,13 @@ class Post(models.Model):
         on_delete=models.SET_NULL,
         related_name='posts',
         verbose_name='Группа для вашего поста',
-        help_text='Выберите группу, или оставьте пустым',
+        help_text='Выберите группу или оставьте пустым',
     )
+
     active = models.BooleanField(default=True)
 
     class Meta:
         ordering = ('-pub_date',)
 
     def __str__(self):
-        return self.text[:25] + '...'
+        return f'Пост "{self.title}" от {self.pub_date}.'

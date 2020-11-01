@@ -7,17 +7,18 @@ from .models import Post, Group
 
 def post_detail(request, post_id):
     post = Post.objects.get(pk=post_id)
-    context = {
+    return render(request, 'post.html', {
         'post': post
-    }
-    return render(request, 'post.html', context)
+    })
 
 
 def posts_list(request):
     posts = Post.objects.filter(
         active__exact=True,
     )
-    return render(request, 'index.html', {'posts': posts})
+    return render(request, 'index.html', {
+        'posts': posts
+    })
 
 
 @login_required
@@ -35,20 +36,17 @@ def groups_list(request):
     groups = Group.objects.filter(
         active__exact=True,
     )
-    context = {
+    return render(request, 'group_list.html', {
         'groups': groups,
-    }
-    return render(request, 'group_list.html', context)
+    })
 
 
-def group_detail(request, slug):
+def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.filter(
         active__exact=True,
     )
-    context = {
+    return render(request, 'group.html', {
         'posts': posts,
         'group': group,
-    }
-    return render(request, 'group.html', context)
-
+    })

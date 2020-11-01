@@ -3,7 +3,6 @@ from datetime import datetime
 
 def timeit(func):
     """A decorator to measure time of running"""
-
     def wrapper(*args, **kwargs):
         start = datetime.now()
         result = func(*args, **kwargs)
@@ -30,7 +29,6 @@ def two(n):
 
 def cache_args(func):
     """A cache decorator"""
-    # полезный код
     _cache = {}
 
     def added_features(*args, **kwargs):

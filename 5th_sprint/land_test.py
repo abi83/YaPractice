@@ -8,7 +8,7 @@ from typing import List, Callable
 
 def func_from_line(a: tuple, b: tuple) -> Callable[[int], int]:
     """
-    rerun a line function from two points
+    Return a line function from two points
     """
     def f(x):
         """ the line function y = f(x)"""
@@ -74,26 +74,12 @@ def right_check(land: List[tuple], point: tuple) -> bool:
     return right_high_line(point[0]) >= point[1] >= right_bottom_line(point[0])
 
 
+def run(land: List[tuple], point: tuple) -> bool:
+    return left_check(land, point) and right_check(land, point)
+
+
 class TestChecks(unittest.TestCase):
     test_data = [
-        {
-            'land': [(100, 100), (200, 200), (300, 100), (200, 0)],
-            'point': (200, 100),
-            'value': True,
-            'desc': 'First test',
-        },
-        {
-            'land': [(200, 200), (300, 400), (500, 300), (300, 0)],
-            'point': (100, 100),
-            'value': False,
-            'desc': 'Outside simple quadrangle',
-        },
-        {
-            'land': [(200, 200), (300, 400), (500, 300), (300, 0)],
-            'point': (300, 200),
-            'value': True,
-            'desc': 'Inside simple quadrangle',
-        },
         {
             'land': [(200, 200), (300, 400), (500, 300), (300, 0)],
             'point': (250, 300),
@@ -106,17 +92,46 @@ class TestChecks(unittest.TestCase):
             'value': True,
             'desc': 'Right in vertex',
         },
-        # {
-        #     'land': [(100, 100), (200, 100), (200, 200), (300, 200)],
-        #     'point': (300, 400),
-        #     'value': True,
-        #     'desc': 'No upper and bottom points',
-        # },
+        {
+            'land': [(100, 100), (200, 100), (200, 200), (300, 200)],
+            'point': (300, 400),
+            'value': True,
+            'desc': 'No upper and bottom points',
+        },
     ]
 
-    def test_left_check(self):
-        for item in self.test_data:
-            call = left_check(item['land'], item['point'])
-            result = item['value']
-            desc = item['desc']
-            self.assertEqual(call, result, f'Doesnt work with{desc}')
+    def test_outside_simple_quadrant(self):
+        call = run([(200, 200), (300, 400), (500, 300), (300, 0)], (100, 100))
+        result = False
+        self.assertEqual(call, result,
+                         'Doesnt work with point outside simple quadrant')
+
+    def test_inside_simple_quadrant(self):
+        call = run([(200, 200), (300, 400), (500, 300), (300, 0)], (300, 200))
+        result = True
+        self.assertEqual(call, result,
+                         'Doesnt work with point inside simple quadrant')
+
+    def test_right_in_edge(self):
+        call = run([(200, 200), (300, 400), (500, 300), (300, 0)], (250, 300))
+        result = True
+        self.assertEqual(call, result,
+                         'Doesnt work with point right in edge')
+
+    def test_right_in_vertex(self):
+        call = run([(200, 200), (300, 400), (500, 300), (300, 0)], (300, 400))
+        result = True
+        self.assertEqual(call, result,
+                         'Doesnt work with point right in vertex')
+
+    def test_no_upper_and_bottom_points(self):
+        call = run([(100, 100), (200, 100), (200, 200), (300, 200)], (150, 101))
+        result = True
+        self.assertEqual(call, result,
+                         'Doesnt work with no upper and bottom point quadrant')
+
+
+if __name__ == '__main__':
+    land = [(100, 100), (200, 200), (300, 100), (200, 0)]
+    point = (200, 100)
+    print(run(land, point))

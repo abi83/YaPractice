@@ -79,27 +79,6 @@ def run(land: List[tuple], point: tuple) -> bool:
 
 
 class TestChecks(unittest.TestCase):
-    test_data = [
-        {
-            'land': [(200, 200), (300, 400), (500, 300), (300, 0)],
-            'point': (250, 300),
-            'value': True,
-            'desc': 'Right in edge',
-        },
-        {
-            'land': [(200, 200), (300, 400), (500, 300), (300, 0)],
-            'point': (300, 400),
-            'value': True,
-            'desc': 'Right in vertex',
-        },
-        {
-            'land': [(100, 100), (200, 100), (200, 200), (300, 200)],
-            'point': (300, 400),
-            'value': True,
-            'desc': 'No upper and bottom points',
-        },
-    ]
-
     def test_outside_simple_quadrant(self):
         call = run([(200, 200), (300, 400), (500, 300), (300, 0)], (100, 100))
         result = False

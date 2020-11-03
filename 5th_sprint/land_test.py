@@ -128,8 +128,6 @@ class TestChecks(unittest.TestCase):
         self.assertEqual(call, result,
                          'Doesnt work with specific quadrant')
 
-
-
     def test_non_quadrant_points(self):
         self.assertRaises(ValueError,
                           run,

@@ -88,45 +88,34 @@ def run(land: List[tuple], point: tuple) -> bool:
 class TestChecks(unittest.TestCase):
     def test_outside_simple_quadrant(self):
         call = run([(200, 200), (300, 400), (500, 300), (300, 0)], (100, 100))
-        result = False
-        self.assertEqual(call, result,
+        self.assertFalse(call,
                          'Doesnt work with point outside simple quadrant')
 
     def test_inside_simple_quadrant(self):
         call = run([(200, 200), (300, 400), (500, 300), (300, 0)], (300, 200))
-        result = True
-        self.assertEqual(call, result,
-                         'Doesnt work with point inside simple quadrant')
+        self.assertTrue(call, 'Doesnt work with point inside simple quadrant')
 
     def test_right_in_edge(self):
         call = run([(200, 200), (300, 400), (500, 300), (300, 0)], (250, 300))
-        result = True
-        self.assertEqual(call, result,
-                         'Doesnt work with point right in edge')
+        self.assertTrue(call, 'Doesnt work with point right in edge')
 
     def test_right_in_vertex(self):
         call = run([(200, 200), (300, 400), (500, 300), (300, 0)], (300, 400))
-        result = True
-        self.assertEqual(call, result,
-                         'Doesnt work with point right in vertex')
+        self.assertTrue(call, 'Doesnt work with point right in vertex')
 
     def test_no_upper_and_bottom_points(self):
         call = run([(100, 100), (200, 100), (200, 200), (300, 200)], (150, 101))
-        result = True
-        self.assertEqual(call, result,
-                         'Doesnt work with no upper and bottom point quadrant')
+        self.assertTrue(call,
+                        'Doesnt work with no upper and bottom point quadrant')
 
     def test_no_left_and_right_points(self):
         call = run([(100, 100), (100, 200), (200, 150), (200, 250)], (150, 175))
-        result = True
-        self.assertEqual(call, result,
-                         'Doesnt work with no upper and bottom point quadrant')
+        self.assertTrue(call,
+                        'Doesnt work with no upper and bottom point quadrant')
 
     def test_specific_quadrant(self):
         call = run([(100, 100), (100, 200), (200, 200), (200, 300)], (150, 175))
-        result = True
-        self.assertEqual(call, result,
-                         'Doesnt work with specific quadrant')
+        self.assertTrue(call, 'Doesnt work with specific quadrant')
 
     def test_non_quadrant_points(self):
         self.assertRaises(ValueError,

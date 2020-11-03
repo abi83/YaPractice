@@ -12,7 +12,6 @@ def func_from_line(a: tuple, b: tuple) -> Callable[[int], int]:
     """
     def f(x):
         """ the line function y = f(x)"""
-        # try:
         return a[1] + (b[1]-a[1])/(b[0]-a[0])*x - (b[1]-a[1])/(b[0]-a[0])*a[0]
     return f
 
@@ -33,71 +32,44 @@ def return_right_point(points_list: List[tuple]) -> tuple:
     return max(points_list)
 
 
-def return_point(point_list: List[tuple], min_max: str, x_y: int) -> tuple:
-    """
-    Returns the point, tuple such as (x,y) from point_list
-    with minimal (or maximal) x (or y) coordinate.
-    Keyword arguments:
-        point_list: the list of points (tuples).
-        min_max: 'min' or 'max' option of returning point
-        x_y: 0 or 1 as point tuple index
-    """
-    if min_max == 'min':
-        min_point = point_list[0]  # starting from first element
-        for i in range(1, len(point_list)):  # starting from second element
-            if point_list[i][x_y] < min_point[x_y]:
-                min_point = point_list[i]
-            elif point_list[i][x_y] == min_point[x_y]:
-                raise ValueError('Tho points returned')
-        return min_point
-    elif min_max == 'max':
-        max_point = point_list[0]  # starting from first element
-        for i in range(1, len(point_list)):  # starting from second element
-            if point_list[i][x_y] > max_point[x_y]:
-                max_point = point_list[i]
-        return max_point
-    else:
-        raise ValueError('Second positional argument'
-                         'must be "min" or "max" string')
-
-
-def left_check(land: List[tuple], point: tuple) -> bool:
-    """
-    Building two rays from left point to upper and bottom points
-    Checking that the point is between the rays
-    """
-    min_x = return_left_point(land)
-    min_y = return_point(land, 'min', 1)  # upper point
-    max_y = return_point(land, 'max', 1)  # bottom point
-
-    left_high_line = func_from_line(min_x, max_y)  # the left upper line
-    left_bottom_line = func_from_line(min_x, min_y)  # the left bottom line
-
-    # if y coordinate of the point is between the values of line functions
-    # with x argument as point x coordinate
-    return left_high_line(point[0]) >= point[1] >= left_bottom_line(point[0])
-
-
-def right_check(land: List[tuple], point: tuple) -> bool:
-    """
-    Building two rays from right point to upper and bottom points
-    Checking that the point is between the rays
-    """
-    max_x = return_right_point(land)
-    min_y = return_point(land, 'min', 1)  # upper point
-    max_y = return_point(land, 'max', 1)  # bottom point
-
-    right_high_line = func_from_line(max_x, max_y)  # the right upper line
-    right_bottom_line = func_from_line(max_x, min_y)  # the right bottom line
-
-    return right_high_line(point[0]) >= point[1] >= right_bottom_line(point[0])
-
-
 def check(land: List[tuple], point: tuple) -> bool:
-    left_point = return_left_point(land, point)
-    pass
+    """
+    Building the schema of quadrant: finding right, left, up and bottom points
+    Creating the rays function from left to up and bottom function and checks
+    if y coordinate of the point is between y value of ray function
+    in x coordinate of the point
+    """
+    left_point = return_left_point(land)
+    right_point = return_right_point(land)
+    other_points = [p for p in land if p not in [left_point, right_point]]
+
+    if other_points[0][1] > other_points[1][1]:
+        up_point = other_points[0]
+    elif other_points[0][1] < other_points[1][1]:
+        up_point = other_points[1]
+    elif other_points[0][1] == other_points[1][1]:
+        up_point = min(other_points)  # taking the left one
+    else:
+        raise RuntimeError('Something going absolutely wrong')
+
+    bottom_point = other_points[0] if other_points[0] != up_point else other_points[1]
+
+    left_upper_line = func_from_line(left_point, up_point)
+    left_bottom_line = func_from_line(left_point, bottom_point)
+
+    right_upper_line = func_from_line(right_point, up_point)
+    right_bottom_line = func_from_line(right_point, bottom_point)
+
+    left_check = left_upper_line(point[0]) >= point[1] >= left_bottom_line(point[0])
+    righ_check = right_upper_line(point[0]) >= point[1] >= right_bottom_line(point[0])
+    # breakpoint()
+    return left_check and righ_check
+
 
 def check_data(land: List[tuple], point: tuple) -> bool:
+    """
+    Checking if given data is correct
+    """
     if len(land) != 4:
         raise TypeError('Given data is not valid')
     if len(point) != 2 or type(point) != tuple:
@@ -110,7 +82,7 @@ def check_data(land: List[tuple], point: tuple) -> bool:
 
 def run(land: List[tuple], point: tuple) -> bool:
     check_data(land, point)
-    return left_check(land, point) and right_check(land, point)
+    return check(land, point)
 
 
 class TestChecks(unittest.TestCase):
@@ -149,6 +121,13 @@ class TestChecks(unittest.TestCase):
         result = True
         self.assertEqual(call, result,
                          'Doesnt work with no upper and bottom point quadrant')
+
+    def test_specific_quadrant(self):
+        call = run([(100, 100), (100, 200), (200, 200), (200, 300)], (150, 175))
+        result = True
+        self.assertEqual(call, result,
+                         'Doesnt work with specific quadrant')
+
 
 
     def test_non_quadrant_points(self):

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %} {{ post.title }} | Yatube{% endblock %}
+{% block header %} {{ post.title }} {% endblock %}
+{% block content %}
+
+  {% include "posts/post_card.html" with show_comments='True' %}
+
+{% endblock %}

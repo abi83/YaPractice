@@ -5,3 +5,23 @@ SELECT table_schema as `Database`, table_name AS `Table`,
 round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB`
 FROM information_schema.TABLES
 ORDER BY (data_length + index_length) DESC
+
+
+SELECT * FROM (
+    SELECT  cities.id AS city_id,
+            cities.city AS name,
+            cities.code AS url,
+/*            cities.show_site AS show_site, */
+            cities.population AS population,
+            cities.capital AS is_capital,
+/*            cities.macroregion_id, */
+            cities.subdomen AS is_subdomen,
+            regions.region AS region_name,
+            regions.cipher_code AS region_code,
+            COUNT(smis.id) AS smi_count
+    FROM cities
+    LEFT JOIN regions ON cities.region_id = regions.id LEFT JOIN smis ON cities.id = smis.id_city
+    WHERE cities.show_site = 1
+    GROUP BY cities.id
+    ORDER BY cities.population DESC) AS mycities
+WHERE smi_count > 3

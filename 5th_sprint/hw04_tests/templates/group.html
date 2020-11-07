@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Записи сообщества {{ group.title }} | Yatube{% endblock %}
+{% block header %} {{ group.title }} {% endblock %}
+{% block content %}
+
+  <p> {{ group.description }}</p>
+
+  {% for post in posts %}
+
+    {% include "posts/post_card.html" with hide_group=True %}
+
+    {% if not forloop.last %}<hr>{% endif %}
+  {% endfor %}
+  {% if posts.has_other_pages %}
+    {% include "paginator.html" with items=posts paginator=paginator%}
+  {% endif %}
+
+{% endblock %} 

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Список всех авторов{% endblock %}
+{% block header %}Список всех авторов{% endblock %}
+{% block content %}
+
+  {% for author in users %}
+    <div class="row">
+      <div class="col-md-3 mb-3 mt-1">
+        <div class="card">
+          <div class="card-body">
+            <div class="h2">
+              {{ author.first_name }} {{ author.last_name }}.
+            </div>
+            <div class="h3 text-muted">
+              <a href="{% url 'profile' username=author.username %}">
+                @{{ author.username }}
+              </a>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div class="h6 text-muted">
+                Подписчиков: XXX <br />
+                Подписан: XXX
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="h6 text-muted">
+                Записей: {{ author.posts.count }}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% if not forloop.last %}<hr>{% endif %}
+  {% endfor %}
+  {% if authors.has_other_pages %}
+    {% include "paginator.html" with items=authors paginator=paginator%}
+  {% endif %}
+
+{% endblock %} 

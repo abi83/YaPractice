@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Последние обновления на сайте | Yatube{% endblock %}
+{% block header %}Последние обновления на сайте{% endblock %}
+{% block content %}
+    {% load cache %}
+    {% cache 5 index_page %}
+
+      {% include "posts/menu.html" with index=True %}
+
+      {% for post in posts %}
+
+        {% include "posts/post_card.html" %}
+
+        {% if not forloop.last %}<hr>{% endif %}
+
+      {% endfor %}
+
+    {% endcache %}
+
+    {% if posts.has_other_pages %}
+      {% include "paginator.html" with items=posts paginator=paginator%}
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} Посты {{ author.first_name }} {{ author.last_name }} | Yatube {% endblock %}
+{% block header %}
+
+  {{ author.first_name }} {{ author.last_name }} aka @{{ author }}
+  {% if author != user %}
+    {% if following %}
+      <a class="btn btn-lg btn-light" href="{% url 'profile-unfollow' author.username %}" role="button">
+        Отписаться
+      </a>
+    {% else %}
+      <a class="btn btn-lg btn-primary" href="{% url 'profile-follow' author.username %}" role="button">
+        Подписаться
+      </a>
+    {% endif %}
+  {% endif %}
+
+{% endblock %}
+
+{% block content %}
+  {% if posts %}
+    <p>Все посты автора</p>
+
+
+
+    {% for post in posts %}
+
+      {% include "posts/post_card.html" with post=post %}
+
+      {% if not forloop.last %}<hr>{% endif %}
+
+    {% endfor %}
+
+    {% if posts.has_other_pages %}
+      {% include "paginator.html" with items=posts paginator=paginator%}
+    {% endif %}
+  {% else %}
+    <p>У автора нет постов</p>
+  {% endif %}
+
+{% endblock %}

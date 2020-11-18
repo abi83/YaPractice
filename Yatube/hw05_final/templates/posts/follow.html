@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Ваша лента подписок | Yatube{% endblock %}
+{% block header %}Ваша лента подписок {% endblock %}
+{% block content %}
+
+    {% include "posts/menu.html" with index=False %}
+
+
+      {% for post in posts %}
+
+        {% include "posts/post_card.html" %}
+
+        {% if not forloop.last %}<hr>{% endif %}
+
+      {% endfor %}
+
+    {% if posts.has_other_pages %}
+      {% include "paginator.html" with items=posts paginator=paginator%}
+    {% endif %}
+
+{% endblock %}

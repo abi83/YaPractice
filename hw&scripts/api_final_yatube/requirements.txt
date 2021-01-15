@@ -1,0 +1,10 @@
+requests
+django
+pytest
+pytest-django
+djangorestframework
+djangorestframework-simplejwt
+
+
+pillow>=7.1.0             # images
+

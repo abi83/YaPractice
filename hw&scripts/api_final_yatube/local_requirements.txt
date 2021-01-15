@@ -1,0 +1,8 @@
+# Additional packages useful for development
+django-extensions
+ipython
+django-debug-toolbar      # debug
+# pytest-django==3.8.0      # test
+pytest                    # via pytest-django
+coverage                  # test coverage
+drf-yasg                  # Open API

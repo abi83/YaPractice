@@ -1,6 +1,6 @@
 body, h1, h2, h3, h4, p, a {
-    margin: 0;
-    font-size: 100%;
+  margin: 0;
+  font-size: 100%;
   font-weight: normal;
 }
 
@@ -14,8 +14,8 @@ body {
 
 .header {
   height: 100vh;
-  background-color: #eee;
   background-image: url(https://pictures.s3.yandex.net/frontend-developer/free-course/cover.jpg);
+  background-color: #eee;
   background-size: cover;
   background-position: center;
   text-align: center;
@@ -33,7 +33,7 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, .9);
 }
 .content{
   font-size: 0;

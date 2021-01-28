@@ -91,7 +91,7 @@ if __name__ == "__main__":
         while not move_done:
             try:
                 point = game.user_move()
-                game.check_move(point)
+                # game.check_move(point)
                 move_done = game.make_move(point, 'user')
                 print('User move accepted')
             except ValueError as e:
@@ -107,7 +107,7 @@ if __name__ == "__main__":
         while not move_done:
             try:
                 point = game.cpu_move()
-                game.check_move(point)
+                # game.check_move(point)
                 move_done = game.make_move(point, 'cpu')
                 print('CPU move accepted')
             except ValueError as e:

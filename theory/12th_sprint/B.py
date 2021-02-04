@@ -17,4 +17,5 @@ def main():
     print('WIN' if result else 'FAIL')
 
 
-main()
+if __name__ == '__main__':
+    main()

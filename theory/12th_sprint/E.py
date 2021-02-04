@@ -19,4 +19,5 @@ def main():
         print(max_len)
 
 
-main()
+if __name__ == '__main__':
+    main()

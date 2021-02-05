@@ -19,8 +19,7 @@ def main():
 
     points = 0
     for t in range(1, 10):
-        if 0 < data.count(str(t)) < k*2:
-            print(f't: {t}, count: {data.count(str(t))}')
+        if 0 < data.count(str(t)) <= k*2:
             points += 1
 
     print(points)

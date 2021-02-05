@@ -14,32 +14,51 @@
 """
 
 
-def first_iteration(street, n):
-    index = 0
-    street_list = list(street)
+def first_iteration(street):
     distance = 'unknown'
-    while index < n:
-        if street_list[index] == 0:
-            print(f'index: {index}. element: {street_list[index]}. distance: {distance}')
+    for element in street:
+        if element == 0:
             distance = 0
             yield 0
         else:
-            print(f'index: {index}. element: {street_list[index]}. distance: {distance}')
             yield distance
-        index += 1
-        if distance != 'unknown':
+        try:
             distance += 1
+        except TypeError:
+            pass
+
+
+def back_iteration(street, n):
+    distance = 'unknown'
+    zero_found = False
+    for index in range(1, n+1):
+        if zero_found:
+            distance += 1
+            try:
+                if distance < street[-index]:
+                    street[-index] = distance
+                else:
+                    # left house is closer, our zero doesn't matter
+                    zero_found = False
+            except TypeError:  # street[-index] == 'unknown'
+                street[-index] = distance
+
+        if street[-index] == 0:
+            distance = 0
+            zero_found = True
+
+    return street
 
 
 def main():
     with open('input.txt') as file:
         n = int(file.readline().strip())
-        street = map(int, file.readline().strip().split())
-    # print(n, street)
+        street = (int(x) for x in file.readline().strip().split())
 
-    output1 = first_iteration(street, n)
-    print(list(output1))
-
+    output1 = first_iteration(street)
+    output2 = back_iteration(list(output1), n)
+    for element in output2:
+        print(element, end=' ')
 
 
 if __name__ == '__main__':

@@ -50,8 +50,11 @@ def get_least_primes_linear(n):
     return primes, lp
 
 
-n = 10000000
+n = 897546782
 
-one = eratosthenes(n)
-two = eratosthenes_effective(n)
+# one = eratosthenes(n)
+# two = eratosthenes_effective(n)
 three = get_least_primes_linear(n)
+# print(one)
+# print(two)
+print(three)

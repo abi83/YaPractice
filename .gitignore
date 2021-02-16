@@ -3,6 +3,7 @@
 .idea
 .log
 /static/
+/theory/12th_sprint/final_assignment/nearest_zero_2.py.log
 
 #cache
 */*/*/__pycache__/

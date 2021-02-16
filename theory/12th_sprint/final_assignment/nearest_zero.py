@@ -40,7 +40,7 @@ def main():
     with open('input.txt') as file:
         n = int(file.readline().strip())
         street = (int(symbol) for symbol in file.readline().strip().split())
-
+    breakpoint()
     left_side_generator = first_iteration(street)
     output = back_iteration(list(left_side_generator), n)
     for element in output:

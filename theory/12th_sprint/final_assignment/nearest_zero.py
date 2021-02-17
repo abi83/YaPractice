@@ -1,8 +1,8 @@
-# success try id: 47973669
+# success try id: 48475361, 1.217s 110.38Mb
 
 def first_iteration(street):
     """
-    Outputting an 'upstairs' row from each 0 found in street.
+    Populating an 'upstairs' row from each 0 found in street.
     From left to right.
     None (unknown) values before first zero found
     """
@@ -21,8 +21,8 @@ def first_iteration(street):
 
 def back_iteration(street, n):
     """
-    Populating 'upstairs' row for each 0 found in string from left to right
-    If left zero is closer to current position distance remaining the same
+    Populating 'upstairs' row for each 0 found in string in reverse order
+    If left zero is closer to current position, distance remains the same
     """
     distance = None
     zero_found = False

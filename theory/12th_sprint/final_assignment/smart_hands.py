@@ -1,35 +1,19 @@
-# success try id: 47975118
+# success try id: 48467871
 
 
-def key_trainer(keyboard_data: str, one_person_power: int):
+def key_trainer(game_field: str,
+                one_person_power: int,
+                cases: [str, list] = '123456789'):
     """
     Checks if keyboard data can be processed with twice 'power'
     """
     return sum(
-        [1 for y in '123456789' if (
-                0 < keyboard_data.count(y) < one_person_power*2
-        )]
+        0 < game_field.count(timer) <= one_person_power * 2 for timer in cases
     )
 
 
-def key_trainer_2(keyboard_data: str, one_person_power: int):
-    """
-    Makes the same as key_trainer but with a more readable code
-    """
-    points = 0
-    for symbol in '123456789':
-        if 0 < keyboard_data.count(symbol) <= one_person_power*2:
-            points += 1
-
-    return points
-
-
 def console_input():
-    power = int(input())
-    data = ''
-    for line in range(0, 4):
-        data += str(input())
-    return power, data
+    return int(input()), input() + input() + input() + input()
 
 
 def console_output(answer: [int, str]):

@@ -1,4 +1,4 @@
-def calculate_distance(street: [list, str]):
+def calculate_distances(street):
     street_length = len(street)
     zeroes_indexes = [
         index for index in range(street_length) if street[index] == '0']
@@ -15,7 +15,7 @@ def calculate_distance(street: [list, str]):
                 position - left_zero_position,
                 right_zero_position - position
             )
-    # populate from last zero
+    # populate from last zero, including it
     last_zero_index = zeroes_indexes[-1]
     for position in range(last_zero_index, street_length):
         yield position - last_zero_index
@@ -24,4 +24,4 @@ def calculate_distance(street: [list, str]):
 if __name__ == '__main__':
     input()
     street = input().split()
-    print(*calculate_distance(street))
+    print(*calculate_distances(street))

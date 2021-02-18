@@ -1,25 +1,25 @@
-def calculate_distances(street):
+def calculate_distances(street, required='0'):
     street_length = len(street)
-    zeroes_indexes = [
-        index for index, value in enumerate(street) if value == '0']
+    zeroes_pos = [
+        pos for pos, value in enumerate(street) if value == required]
     # populate until first zero
-    first_zero_index = zeroes_indexes[0]
-    for position in range(0, first_zero_index):
-        yield first_zero_index - position
-    # for each pair of zero indexes populate the distances between
-    for left_zero_position, right_zero_position in \
-            zip(zeroes_indexes[0:-1], zeroes_indexes[1:]):
-        yield 0  # for left_zero_position, then inner loop
+    first_zero_pos = zeroes_pos[0]
+    for pos in range(0, first_zero_pos):
+        yield first_zero_pos - pos
+    # for each pair of zero positions populate the distances between
+    for left_zero_pos, right_zero_pos in (
+                zip(zeroes_pos[0:-1], zeroes_pos[1:])):
+        yield 0  # for left_zero_pos, then inner loop
         # excluding right zero, it will be populated later
-        for position in range(left_zero_position + 1, right_zero_position):
+        for pos in range(left_zero_pos + 1, right_zero_pos):
             yield min(
-                position - left_zero_position,
-                right_zero_position - position
+                pos - left_zero_pos,
+                right_zero_pos - pos
             )
     # populate from last zero, including it
-    last_zero_index = zeroes_indexes[-1]
-    for position in range(last_zero_index, street_length):
-        yield position - last_zero_index
+    last_zero_pos = zeroes_pos[-1]
+    for pos in range(last_zero_pos, street_length):
+        yield pos - last_zero_pos
 
 
 if __name__ == '__main__':

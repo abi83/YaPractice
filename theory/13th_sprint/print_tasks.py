@@ -1,6 +1,13 @@
+from utils import *
+
+
 def solution(node) -> None:
-    print(node.value)
     try:
-        solution(node.next)
-    except Exception:
-        pass
+        solution(node.next_item)
+    except AttributeError:
+        return
+    print(node.value)
+
+
+if __name__ == '__main__':
+    solution(items_from_file())

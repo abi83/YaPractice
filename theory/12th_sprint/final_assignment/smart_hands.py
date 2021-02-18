@@ -12,15 +12,7 @@ def key_trainer(game_field: str,
     )
 
 
-def console_input():
-    return int(input()), input() + input() + input() + input()
-
-
-def main():
-    power, data = console_input()
+if __name__ == '__main__':
+    power, data = int(input()), input() + input() + input() + input()
     points = key_trainer(data, power)
     print(points)
-
-
-if __name__ == '__main__':
-    main()

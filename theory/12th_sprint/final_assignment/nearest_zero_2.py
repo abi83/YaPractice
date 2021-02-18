@@ -1,39 +1,30 @@
-# success try id: 48475209. 1.43s, 117.06Mb
-
-def found_zeroes(street: list):
-    """
-    Returns a list of zero element's indexes
-    """
-    return [i for i in range(len(street)) if street[i] == '0']
+# success try id: 48503429. 1.339s, 109.61Mb
 
 
-def console_input():
-    return int(input()), input().split()
-
-
-def main():
-    street_length, street = console_input()
-    answer: list = [None] * street_length
-    zeroes_indexes = found_zeroes(street)
+def calculate_distance(street: [list, str]):
+    street_length = len(street)
+    zeroes_indexes = [
+        index for index in range(street_length) if street[index] == '0']
     # populate until first zero
-    for index in range(0, zeroes_indexes[0]):
-        answer[index] = zeroes_indexes[0] - index
+    first_zero_index = zeroes_indexes[0]
+    for position in range(0, first_zero_index):
+        yield first_zero_index - position
     # for each pair of zero indexes populate the distances between
     for left_zero_position, right_zero_position in zip(
             zeroes_indexes[0:-1], zeroes_indexes[1:]):
-        for inner_index in range(left_zero_position, right_zero_position):
-            assert answer[inner_index] is None,\
-                'Something is going absolutely wrong'
-            answer[inner_index] = min(
-                inner_index - left_zero_position,
-                right_zero_position - inner_index
+        # excluding right zero, it will be populated later
+        for position in range(left_zero_position, right_zero_position):
+            yield min(
+                position - left_zero_position,
+                right_zero_position - position
             )
     # populate from last zero
-    for index in range(zeroes_indexes[-1], street_length):
-        answer[index] = index - zeroes_indexes[-1]
-
-    print(*answer)
+    last_zero_index = zeroes_indexes[-1]
+    for position in range(last_zero_index, street_length):
+        yield position - last_zero_index
 
 
 if __name__ == '__main__':
-    main()
+    input()
+    street = input().split()
+    print(*calculate_distance(street))

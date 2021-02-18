@@ -10,8 +10,54 @@
 
 arr = [1,2,4,5];
 num = 3;
-// f = function(element, index: undefined, arr: undefined) {
-//   return element > num;
-// }
-//
-// console.log(arr.findIndex((element, index, arr) => element > num));
+f = function (element, index, arr) {
+  return element > num;
+}
+
+console.log(arr.findIndex((element, index, arr) => element > num));
+
+//iterate through object
+
+
+let users = {
+  Alan: {
+    age: 27,
+    online: false
+  },
+  Jeff: {
+    age: 32,
+    online: true
+  },
+  Sarah: {
+    age: 48,
+    online: false
+  },
+  Ryan: {
+    age: 19,
+    online: true
+  }
+};
+
+
+
+function getArrayOfUsers(obj) {
+  for (let item in Object.keys(obj))
+  {console.log(item)}
+}
+getArrayOfUsers(users);
+
+//output:
+// 0
+// 1
+// 2
+// 3
+
+
+// this ?
+let dog = {
+  name: "Spot",
+  numLegs: 4,
+  sayLegs: () => {return `This dog has ${this.numLegs} legs.`}
+};
+
+console.log(dog.sayLegs()); //This dog has undefined legs.

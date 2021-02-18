@@ -1,6 +1,3 @@
-# success try id: 48503429. 1.339s, 109.61Mb
-
-
 def calculate_distance(street: [list, str]):
     street_length = len(street)
     zeroes_indexes = [

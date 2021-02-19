@@ -15,4 +15,4 @@ def solution(node, searched_element) -> int:
 
 
 if __name__ == '__main__':
-    print(solution(items_from_file(), 'n kkt yb ct'))
+    print(solution(node_items_from_file(), 'n kkt yb ct'))

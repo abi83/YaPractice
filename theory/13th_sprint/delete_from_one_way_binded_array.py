@@ -19,4 +19,4 @@ def solution(node, number) -> None:
 if __name__ == '__main__':
     # s(items_from_file())
     print('---------------')
-    s(solution(items_from_file(), 0))
+    s(solution(node_items_from_file(), 0))

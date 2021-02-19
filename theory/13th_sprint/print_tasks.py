@@ -12,4 +12,4 @@ def solution(node) -> None:
 
 
 if __name__ == '__main__':
-    solution(items_from_file())
+    solution(node_items_from_file())

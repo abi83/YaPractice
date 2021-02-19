@@ -17,7 +17,7 @@ class DoubleConnectedNode:
         return self.value
 
 
-def items_from_file():
+def node_items_from_file():
     items = []
 
     with open('input.txt') as file:
@@ -27,28 +27,50 @@ def items_from_file():
         for i in range(n):
             current_item = next_item
             current_item.value = file.readline().strip()
-            next_item = Node('Next item item')
+            next_item = Node('Next item')
             next_item.next_item = current_item
             items.append(current_item)
     return current_item
 
 
-def two_way_items_from_file():
+def print_node_array(node) -> None:
+    current = node
+    while True:
+        try:
+            print(current.value)
+            current = current.next_item
+        except AttributeError:
+            return
+
+
+def double_connected_node_from_file():
     items = []
 
     with open('input.txt') as file:
         n = int(file.readline())
-        next_item = DoubleConnectedNode('First item')
+        new_prev_item = DoubleConnectedNode(file.readline().strip())
+        new_prev_item.next = None
 
         for i in range(n):
-            current_item = next_item
-            next_item = DoubleConnectedNode('Next item')
+            current_item = new_prev_item
+            new_prev_item = DoubleConnectedNode('Prev item')
+            current_item.prev = new_prev_item
+            new_prev_item.next = current_item
+            new_prev_item.value = file.readline().strip()
 
-            current_item.value = file.readline().strip()
-            current_item.next = next_item
-
-            next_item.prev = current_item
             items.append(current_item)
-    current_item.next = None
-    breakpoint()
+
+    current_item.prev = None
+    # breakpoint()
     return current_item
+
+
+def print_double_connected_node_array(node) -> None:
+    current = node
+    while True:
+        try:
+            print(current.value)
+            current = current.next
+        except AttributeError:
+            return
+

@@ -1,4 +1,5 @@
-from print_tasks import Node, items_from_file
+from utils import DoubleConnectedNode, two_way_items_from_file
+from print_tasks import solution as s
 
 
 def solution(head):
@@ -11,5 +12,6 @@ def solution(head):
         current_item.next, current_item.prev = previous_item, next_item
         current_item = next_item
 
+
 if __name__ == '__main__':
-    solution(items_from_file())
+    s(two_way_items_from_file())

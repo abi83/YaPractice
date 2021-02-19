@@ -1,6 +1,3 @@
-from utils import *
-
-
 def solution(node) -> None:
     current = node
     while True:
@@ -9,7 +6,3 @@ def solution(node) -> None:
             current = current.next_item
         except AttributeError:
             return
-
-
-if __name__ == '__main__':
-    solution(items_from_file())

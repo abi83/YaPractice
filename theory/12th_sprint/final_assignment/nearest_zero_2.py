@@ -8,7 +8,8 @@ def calculate_distances(street, required='0'):
         yield first_zero_pos - pos
     # for each pair of zero positions populate the distances between
     for left_zero_pos, right_zero_pos in (
-                zip(zeroes_pos[0:-1], zeroes_pos[1:])):
+        zip(zeroes_pos[0:-1], zeroes_pos[1:])
+    ):
         yield 0  # for left_zero_pos, then inner loop
         # excluding right zero, it will be populated later
         for pos in range(left_zero_pos + 1, right_zero_pos):

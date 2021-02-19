@@ -1,7 +1,3 @@
-from utils import *
-from print_tasks import solution as s
-
-
 def solution(node, number) -> None:
     previous_item = None
     next_item = node
@@ -14,9 +10,3 @@ def solution(node, number) -> None:
     except AttributeError:
         return node.next_item
     return node
-
-
-if __name__ == '__main__':
-    # s(items_from_file())
-    print('---------------')
-    s(solution(items_from_file(), 0))

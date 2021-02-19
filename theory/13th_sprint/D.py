@@ -1,7 +1,4 @@
-from utils import *
-
-
-def solution(node, searched_element) -> int:
+def solution(node, searched_element):
     current_element = node
     n = 0
     while True:
@@ -12,7 +9,3 @@ def solution(node, searched_element) -> int:
             return -1
         n += 1
         current_element = next_element
-
-
-if __name__ == '__main__':
-    print(solution(items_from_file(), 'n kkt yb ct'))

@@ -8,6 +8,11 @@
 // has been sorted it will look like [3,5,20] and 19 is less than 20 (index 2)
 // and greater than 5 (index 1).
 
+
+//вопрос первый: видимо это "колбэки" те самые.
+//есть задачка (выше) в которой надо используя findIndex вернуть индекс массива
+//не совсем понятно как в метод передавать функцию, есть разные подходы надо
+// с ними разобраться
 arr = [1,2,4,5];
 num = 3;
 f = function (element, index, arr) {
@@ -17,8 +22,7 @@ f = function (element, index, arr) {
 console.log(arr.findIndex((element, index, arr) => element > num));
 
 //iterate through object
-
-
+//вопрос второй. Почему при итерации через объект выводятся 0.1.2.3.
 let users = {
   Alan: {
     age: 27,
@@ -38,8 +42,6 @@ let users = {
   }
 };
 
-
-
 function getArrayOfUsers(obj) {
   for (let item in Object.keys(obj))
   {console.log(item)}
@@ -54,10 +56,24 @@ getArrayOfUsers(users);
 
 
 // this ?
+// почему this не работает с ${} ?
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs: () => {return `This dog has ${this.numLegs} legs.`}
+  sayLegs: () => {return `This dog has ${this.numLegs} legs.`},
+  sayLegs2: () => {return 'This do has' + this.numLegs + 'legs'},
 };
 
 console.log(dog.sayLegs()); //This dog has undefined legs.
+console.log(dog.sayLegs2()); //This dog has 4 legs.
+
+
+//  Вот эти методы.... В первую очередь map и reduce.
+//  Что за методы, как работают разобрать 1-2 примера.
+//
+// Some commonly used functions are
+// - map
+// - filter
+// - reduce
+// - find
+// - findIndex

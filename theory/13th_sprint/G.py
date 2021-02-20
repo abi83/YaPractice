@@ -46,7 +46,6 @@ if __name__ == '__main__':
             except ValueError:
                 command = line
                 parameter = None
-            breakpoint()
             if parameter is not None:
                 getattr(s, command)(parameter)
             else:

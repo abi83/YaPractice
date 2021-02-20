@@ -1,32 +1,12 @@
-31
-get_max
-push -7
-pop
-get_max
-pop
-push 2
-get_max
-pop
-get_max
-push 7
-push -5
-pop
-push -6
-pop
-get_max
-pop
-get_max
-get_max
-pop
-push -4
-push 10
-push -8
-push -6
-push -10
-push 0
-pop
-push 7
-get_max
+10
+1
+push 1
+size
 push 3
-push -10
-get_max
+size
+push 1
+pop
+push 1
+pop
+push 3
+push 3

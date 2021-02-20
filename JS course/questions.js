@@ -56,7 +56,7 @@ getArrayOfUsers(users);
 
 
 // this ?
-// почему this не работает с ${} ?
+// вопрос третий. почему this не работает с ${} ?
 let dog = {
   name: "Spot",
   numLegs: 4,
@@ -68,7 +68,7 @@ console.log(dog.sayLegs()); //This dog has undefined legs.
 console.log(dog.sayLegs2()); //This dog has 4 legs.
 
 
-//  Вот эти методы.... В первую очередь map и reduce.
+//  Вопрос четыертый. Вот эти методы.... В первую очередь map и reduce.
 //  Что за методы, как работают разобрать 1-2 примера.
 //
 // Some commonly used functions are

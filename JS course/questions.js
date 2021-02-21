@@ -60,8 +60,8 @@ getArrayOfUsers(users);
 let dog = {
   name: "Spot",
   numLegs: 4,
-  sayLegs: () => {return `This dog has ${this.numLegs} legs.`},
-  sayLegs2: () => {return 'This do has' + this.numLegs + 'legs'},
+  sayLegs: function () {return `This dog has ${this.numLegs} legs.`},
+  sayLegs2: function () {return 'This do has' + this.numLegs + 'legs'},
 };
 
 console.log(dog.sayLegs()); //This dog has undefined legs.

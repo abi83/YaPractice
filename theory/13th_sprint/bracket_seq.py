@@ -14,22 +14,21 @@ def is_correct_bracket_seq(string: str) -> bool:
     KeyError: ' "-" is not accepted '
     """
 
-    unclosed_brackets = ''
-    paares_to_close = {
+    unclosed_brackets_stack = ''
+    pairs_to_close = {
         '}': '{',
         ')': '(',
         ']': '[',
     }
 
     for symbol in string:
-        unclosed_brackets += symbol
+        if symbol in '([{':
+            unclosed_brackets_stack += symbol
+        if (symbol in '}])'
+                and unclosed_brackets_stack[-1] == pairs_to_close[symbol]):
+            unclosed_brackets_stack = unclosed_brackets_stack[:-1]
 
-        if (
-                symbol in '}])'
-            and unclosed_brackets[-2:] == paares_to_close[symbol] + symbol):
-            unclosed_brackets = unclosed_brackets[:-2]
-
-    return not bool(unclosed_brackets)
+    return not bool(unclosed_brackets_stack)
 
 
 with open('input.txt') as file:

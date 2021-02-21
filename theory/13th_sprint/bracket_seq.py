@@ -31,8 +31,6 @@ def is_correct_bracket_seq(string: str) -> bool:
     return not bool(unclosed_brackets_stack)
 
 
-with open('input.txt') as file:
-    bracket_string = file.readline().strip()
-
-print(is_correct_bracket_seq(bracket_string))
-
+if __name__ == '__main__':
+    import doctest
+    doctest.testmod()

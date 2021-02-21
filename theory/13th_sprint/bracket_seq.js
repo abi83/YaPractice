@@ -22,7 +22,7 @@ const bracketTest = function(sequence) {
       && unclosed_brackets[unclosed_brackets.length - 1] === pairs_to_close[symbol]) {
         unclosed_brackets = unclosed_brackets.slice(0, -1)
     }
-  };
+  }
 
   return unclosed_brackets === ''
 }

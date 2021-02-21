@@ -1,1 +1,10 @@
-{}{}()[](())
+9
+get
+size
+put 74
+get
+size
+put 90
+size
+size
+size

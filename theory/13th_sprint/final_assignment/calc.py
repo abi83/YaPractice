@@ -1,9 +1,10 @@
 def calculate_reverse_polish_notation(rpn_string: str) -> int:
     """
-    Input: A string with numbers and operations symbols [+,-,*,/]
-    separated by space. example: '7 2 + 4 * 2 +'
-    Output: Calculated value or las calculated value in stack,
-    if not enough operation symbols provided
+    Input: A 'reverse polish notation' string with numbers and
+        operations symbols [+,-,*,/] separated by space.
+        Example: '7 2 + 4 * 2 +'
+    Output: Calculated value or last calculated value in stack,
+        if not enough operation symbols provided
     """
     rpn_array = rpn_string.split()
     stack = []
@@ -30,6 +31,5 @@ def calculate_reverse_polish_notation(rpn_string: str) -> int:
 
 
 if __name__ == '__main__':
-    with open('input.txt') as file:
-        line = file.readline().strip()
-        print(calculate_reverse_polish_notation(line))
+    line = input()
+    print(calculate_reverse_polish_notation(line))

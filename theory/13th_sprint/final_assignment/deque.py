@@ -6,7 +6,7 @@ import array
 
 class Deque:
     """
-    Minimalistic Deque implementation with fix sized array
+    Minimalistic Deque implementation with fix sized array.
     Methods provided:
         .push_back(value)
         .push_front(value)
@@ -105,7 +105,7 @@ class Deque:
             raise ValueError(f'Tail index must be in (0...{self.max_size})')
 
     def push_back(self, value: int) -> None:
-        if self.size >= self.max_size:
+        if self.size == self.max_size:
             print('error')
             return
 
@@ -123,7 +123,7 @@ class Deque:
             self.size = 1
 
     def push_front(self, value: int) -> None:
-        if self.size >= self.max_size:
+        if self.size == self.max_size:
             print('error')
             return
 
@@ -141,34 +141,35 @@ class Deque:
             self.size = 1
 
     def pop_back(self) -> None:
-        if self.size > 0:
-            print(self._get_element_by_index(self.tail_index))
-            self.size -= 1
-            if self.size > 0:
-                self.tail_index = (self.tail_index - 1) % self.max_size
-        else:
+        if self.size == 0:
             print('error')
+            return
+
+        print(self._get_element_by_index(self.tail_index))
+        self.size -= 1
+        if self.size > 0:
+            self.tail_index = (self.tail_index - 1) % self.max_size
 
     def pop_front(self) -> None:
-        if self.size > 0:
-            print(self._get_element_by_index(self.head_index))
-            self.size -= 1
-            if self.size > 0:
-                self.head_index = (self.head_index + 1) % self.max_size
-        else:
+        if self.size == 0:
             print('error')
+            return
+
+        print(self._get_element_by_index(self.head_index))
+        self.size -= 1
+        if self.size > 0:
+            self.head_index = (self.head_index + 1) % self.max_size
 
 
 if __name__ == '__main__':
-    with open('input.txt') as file:
-        commands_count = int(file.readline().strip())
-        stack_size = int(file.readline().strip())
-        deque = Deque(stack_size)
-        for i in range(commands_count):
-            line = file.readline().strip().split()
-            command = line[0]
-            parameter = int(line[1]) if len(line) > 1 else None
-            if parameter is not None:
-                getattr(deque, command)(parameter)
-            else:
-                getattr(deque, command)()
+    commands_count = int(input())
+    stack_size = int(input())
+    deque = Deque(stack_size)
+    for i in range(commands_count):
+        line = input()
+        command = line[0]
+        parameter = int(line[1]) if len(line) > 1 else None
+        if parameter is not None:
+            getattr(deque, command)(parameter)
+        else:
+            getattr(deque, command)()

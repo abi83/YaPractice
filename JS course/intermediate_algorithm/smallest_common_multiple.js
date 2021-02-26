@@ -27,7 +27,7 @@ function smallestCommons(arr) {
       primes.push(number)
     }
   }
-  // console.log(primes)
+
   let range = Array(end - start + 1).fill().map((_, idx) => start + idx)
   let primesPower = [];
   for (let prime of primes) {
@@ -35,11 +35,8 @@ function smallestCommons(arr) {
       range
       .map(function(element) {
             let power = Math.log(element)/Math.log(prime)
-            // console.log('element', element, 'prime', prime, 'power',power)
             if (Math.abs(power - Math.floor(power)) < 0.001) {
               return {prime: prime, element: element, power: Math.floor(power)}
-            // } else {
-            //   return {prime: prime, element: element, power: 1}
             }
           })
       .filter((element)=> element)

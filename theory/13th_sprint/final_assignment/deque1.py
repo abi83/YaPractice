@@ -64,37 +64,80 @@ class Deque:
         return self._data[index_to_pop]
 
 
+def test_deque():
+    test_cases = [
+        {'stack_size': 10,
+         'commands': [
+             ("push_front", -855), ("push_front", 720), ("pop_back", None),
+             ("pop_back", None), ("push_back", 844), ("pop_back", None),
+             ("push_back", 823),
+         ],
+         'output': '-855 720 844',
+         },
+        {'stack_size': 4,
+         'commands': [
+             ("push_front", 861), ("push_front", -819), ("pop_back", None),
+             ("pop_back", None)
+         ],
+         'output': '861 -819',
+         },
+        {'stack_size': 7,
+         'commands': [
+             ("pop_front", None), ("pop_front", None), ("push_front", 741),
+             ("push_front", 648), ("pop_front", None), ("pop_back", None),
+             ("pop_front", None),
+         ],
+         'output': 'error error 648 741 error',
+         },
+    ]
+
+    for case in test_cases:
+        deque = Deque(case['stack_size'])
+        output = ''
+        for command, parameter in case['commands']:
+            try:
+                if parameter is not None:
+                    getattr(deque, command)(parameter)
+                else:
+                    answer = str(getattr(deque, command)())
+                    output += answer if not output else ' ' + answer
+            except KeyError:
+                output += 'error' if not output else ' error'
+        assert case['output'] == output, 'bla bla'
+
+
 if __name__ == '__main__':
-    commands_count = int(input())
-    stack_size = int(input())
-    deque = Deque(stack_size)
-
-    for i in range(commands_count):
-        line = input().split()
-        command = line[0]
-        parameter = int(line[1]) if len(line) > 1 else None
-        try:
-            if parameter is not None:
-                getattr(deque, command)(parameter)
-            else:
-                print(getattr(deque, command)())
-        except KeyError:
-            print('error')
-
-    # with open('input.txt') as file:
-    #     commands_count = int(file.readline())
-    #     stack_size = int(file.readline())
-    #     deque = Deque(stack_size)
+    test_deque()
+    # commands_count = int(input())
+    # stack_size = int(input())
+    # deque = Deque(stack_size)
     #
-    #     for i in range(commands_count):
-    #         line = file.readline().strip().split()
-    #         command = line[0]
-    #         parameter = int(line[1]) if len(line) > 1 else None
-    #         # breakpoint()
-    #         try:
-    #             if parameter is not None:
-    #                 getattr(deque, command)(parameter)
-    #             else:
-    #                 print(getattr(deque, command)())
-    #         except KeyError:
-    #             print('error')
+    # for i in range(commands_count):
+    #     line = input().split()
+    #     command = line[0]
+    #     parameter = int(line[1]) if len(line) > 1 else None
+    #     try:
+    #         if parameter is not None:
+    #             getattr(deque, command)(parameter)
+    #         else:
+    #             print(getattr(deque, command)())
+    #     except KeyError:
+    #         print('error')
+
+    with open('input.txt') as file:
+        commands_count = int(file.readline())
+        stack_size = int(file.readline())
+        deque = Deque(stack_size)
+
+        for i in range(commands_count):
+            line = file.readline().strip().split()
+            command = line[0]
+            parameter = int(line[1]) if len(line) > 1 else None
+            # breakpoint()
+            try:
+                if parameter is not None:
+                    getattr(deque, command)(parameter)
+                else:
+                    print(getattr(deque, command)())
+            except KeyError:
+                print('error')

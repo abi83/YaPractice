@@ -21,7 +21,7 @@ class Deque:
         self._max_size = max_size
         self._size = 0
         self._head_index = 0
-        self._tail_index = 0
+        self._tail_index = -1
 
     def __repr__(self):
         return f'Deque obj. Size: {self.size} of {self.max_size}'
@@ -162,14 +162,29 @@ class Deque:
 
 
 if __name__ == '__main__':
-    commands_count = int(input())
-    stack_size = int(input())
-    deque = Deque(stack_size)
-    for i in range(commands_count):
-        line = input()
-        command = line[0]
-        parameter = int(line[1]) if len(line) > 1 else None
-        if parameter is not None:
-            getattr(deque, command)(parameter)
-        else:
-            getattr(deque, command)()
+    # commands_count = int(input())
+    # stack_size = int(input())
+    # deque = Deque(stack_size)
+    #
+    # for i in range(commands_count):
+    #     line = input().split()
+    #     command = line[0]
+    #     parameter = int(line[1]) if len(line) > 1 else None
+    #     if parameter is not None:
+    #         getattr(deque, command)(parameter)
+    #     else:
+    #         getattr(deque, command)()
+
+    with open('input.txt') as file:
+        commands_count = int(file.readline())
+        stack_size = int(file.readline())
+        deque = Deque(stack_size)
+
+        for i in range(commands_count):
+            line = file.readline().strip().split()
+            command = line[0]
+            parameter = int(line[1]) if len(line) > 1 else None
+            if parameter is not None:
+                getattr(deque, command)(parameter)
+            else:
+                getattr(deque, command)()

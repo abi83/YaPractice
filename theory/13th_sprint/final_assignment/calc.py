@@ -8,19 +8,21 @@ def calculate_reverse_polish_notation(rpn_string: str) -> int:
     """
     rpn_array = rpn_string.split()
     stack = []
+    actions = {
+        '+': lambda x, y: x + y,
+        '-': lambda x, y: x - y,
+        '*': lambda x, y: x * y,
+        '/': lambda x, y: x // y,
+    }
+
     for element in rpn_array:
         if element in '+-*/':
             last_digit = stack[-1]
             before_last_digit = stack[-2]
             stack = stack[:-2]
-            if element == '+':
-                stack.append(before_last_digit + last_digit)
-            elif element == '-':
-                stack.append(before_last_digit - last_digit)
-            elif element == '*':
-                stack.append(before_last_digit * last_digit)
-            elif element == '/':
-                stack.append(before_last_digit // last_digit)
+            stack.append(
+                actions[element](before_last_digit, last_digit)
+            )
             continue
         try:
             stack.append(int(element))
@@ -31,5 +33,6 @@ def calculate_reverse_polish_notation(rpn_string: str) -> int:
 
 
 if __name__ == '__main__':
-    line = input()
-    print(calculate_reverse_polish_notation(line))
+    print(
+        calculate_reverse_polish_notation(input())
+    )

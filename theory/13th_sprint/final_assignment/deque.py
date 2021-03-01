@@ -6,7 +6,7 @@ import array
 
 class Deque:
     """
-    Minimalistic Deque implementation with fix sized array.
+    Minimalistic Deque implementation with fix-sized array.
     Methods provided:
         .push_back(value)
         .push_front(value)
@@ -66,8 +66,8 @@ class Deque:
 
 if __name__ == '__main__':
     commands_count = int(input())
-    stack_size = int(input())
-    deque = Deque(stack_size)
+    deque_size = int(input())
+    deque = Deque(deque_size)
 
     for i in range(commands_count):
         line = input().split()

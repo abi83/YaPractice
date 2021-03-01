@@ -43,7 +43,7 @@ def calculate_reverse_polish_notation(expression: Iterable) -> int:
         try:
             stack.append(int(element))
         except ValueError as error:
-            raise ValueError(f'Unexpected element {element}.') from error
+            raise ValueError(f'Unexpected element "{element}".') from error
 
     return stack.pop()
 

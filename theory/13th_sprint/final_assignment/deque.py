@@ -1,4 +1,4 @@
-# success try: 49009276, 11 мрт 2021, 18:19:27, 96ms, 4.00Mb
+# success try: 49053787, 2 мрт 2021, 15:59:04, 95ms 3.97Mb
 
 
 class Deque:

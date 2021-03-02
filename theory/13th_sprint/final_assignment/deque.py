@@ -1,9 +1,6 @@
 # success try: 49009276, 11 мрт 2021, 18:19:27, 96ms, 4.00Mb
 
 
-import array
-
-
 class Deque:
     """
     Minimalistic Deque implementation with fix-sized array.
@@ -16,48 +13,40 @@ class Deque:
     head_index, tail_index are indexes of first and last elements in array.
     """
     def __init__(self, max_size):
-        self._data = array.array('h', [0]*max_size)
+        self._data = [0] * max_size
         self._max_size = max_size
         self._size = 0
         self._head_index = 0
         self._tail_index = -1
 
     def __repr__(self):
-        return f'Deque obj. Size: {self._size} of {self._max_size}'
+        return f'Deque obj. (Size: {self._size} of {self._max_size})'
 
-    def push_back(self, value: int) -> None:
+    def push_back(self, value) -> None:
         if self._size == self._max_size:
-            raise KeyError(
-                f'The {self} deque\'s maximum size of'
-                f'{self._max_size} is exceeded')
-
+            raise IndexError(f'The {self} maximum size  is exceeded')
         self._tail_index = (self._tail_index + 1) % self._max_size
         self._data[self._tail_index] = value
         self._size += 1
 
-    def push_front(self, value: int) -> None:
+    def push_front(self, value) -> None:
         if self._size == self._max_size:
-            raise KeyError(
-                f'The {self} deque\'s maximum size of'
-                f'{self._max_size} is exceeded')
-
+            raise IndexError(f'The {self} maximum size  is exceeded')
         self._head_index = (self._head_index - 1) % self._max_size
         self._data[self._head_index] = value
         self._size += 1
 
-    def pop_back(self) -> None:
+    def pop_back(self):
         if self._size == 0:
-            raise KeyError(f'The {self} deque\' is empty')
-
+            raise IndexError(f'The {self} deque is empty')
         index_to_pop = self._tail_index
         self._size -= 1
         self._tail_index = (self._tail_index - 1) % self._max_size
         return self._data[index_to_pop]
 
-    def pop_front(self) -> None:
+    def pop_front(self):
         if self._size == 0:
-            raise KeyError(f'The {self} deque\' is empty')
-
+            raise IndexError(f'The {self} deque is empty')
         index_to_pop = self._head_index
         self._size -= 1
         self._head_index = (self._head_index + 1) % self._max_size
@@ -69,14 +58,16 @@ if __name__ == '__main__':
     deque_size = int(input())
     deque = Deque(deque_size)
 
-    for i in range(commands_count):
-        line = input().split()
-        command = line[0]
-        parameter = int(line[1]) if len(line) > 1 else None
+    for call in range(commands_count):
+        command, *parameters = input().split()
         try:
-            if parameter is not None:
-                getattr(deque, command)(parameter)
-            else:
-                print(getattr(deque, command)())
-        except KeyError:
-            print('error')
+            method = getattr(deque, command)
+        except AttributeError:
+            print(f'Method "{command}" in Deque class not found. Continue...')
+            continue
+        try:
+            output = method(*parameters)
+        except IndexError:
+            output = 'error'
+        if output:
+            print(output)

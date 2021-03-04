@@ -9,7 +9,6 @@ class Deque:
         .push_front(value)
         .pop_front()
         .pop_back()
-    Value: Signed short int, abs(value) < 32767
     head_index, tail_index are indexes of first and last elements in array.
     """
     def __init__(self, max_size):
@@ -55,8 +54,7 @@ class Deque:
 
 if __name__ == '__main__':
     commands_count = int(input())
-    deque_size = int(input())
-    deque = Deque(deque_size)
+    deque = Deque(int(input()))
 
     for call in range(commands_count):
         command, *parameters = input().split()

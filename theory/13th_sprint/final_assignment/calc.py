@@ -2,6 +2,13 @@
 
 from collections.abc import Iterable
 
+ACTIONS = {
+    '+': lambda x, y: x + y,
+    '-': lambda x, y: x - y,
+    '*': lambda x, y: x * y,
+    '/': lambda x, y: x // y,
+}
+
 
 class Stack:
     """
@@ -26,9 +33,9 @@ class Stack:
 
 def calculate_reverse_polish_notation(
         expression: Iterable,
-        stack=Stack(),
-        actions=None,
-        element_validator=int,
+        stack=None,
+        actions=ACTIONS,
+        element_converter=int,
 ) -> int:
     """
     Input: A 'reverse polish notation' iterable with numbers and
@@ -36,15 +43,9 @@ def calculate_reverse_polish_notation(
     Output: Calculated value or last calculated value in stack,
         if not enough operation symbols provided
     """
-    if actions is None:
-        actions = {
-            '+': lambda x, y: x + y,
-            '-': lambda x, y: x - y,
-            '*': lambda x, y: x * y,
-            '/': lambda x, y: x // y,
-        }
+    stack = Stack() if stack is None else stack
     for element in expression:
-        if element in actions.keys():
+        if element in actions:
             last_digit = stack.pop()
             before_last_digit = stack.pop()
             stack.append(
@@ -52,7 +53,7 @@ def calculate_reverse_polish_notation(
             )
             continue
         try:
-            stack.append(element_validator(element))
+            stack.append(element_converter(element))
         except ValueError as error:
             raise ValueError(f'Unexpected element "{element}".') from error
 

@@ -1,4 +1,4 @@
-# success try: 49053787, 2 мрт 2021, 15:59:04, 95ms 3.97Mb
+from typing import List
 
 
 class Deque:
@@ -52,20 +52,27 @@ class Deque:
         return self._data[index_to_pop]
 
 
+def run(command_parameter_list: List[tuple]):
+    for command, *parameter in command_parameter_list:
+        try:
+            method = getattr(deque, command)
+        except AttributeError as error:
+            raise AttributeError(
+                f'Method "{command}" in Deque class not found.') from error
+        try:
+            if command in ['pop_front', 'pop_back']:
+                yield method()
+            else:
+                method(*parameter)
+        except IndexError:
+            yield 'error'
+
+
 if __name__ == '__main__':
     commands_count = int(input())
     deque = Deque(int(input()))
-
-    for call in range(commands_count):
-        command, *parameters = input().split()
-        try:
-            method = getattr(deque, command)
-        except AttributeError:
-            print(f'Method "{command}" in Deque class not found. Continue...')
-            continue
-        try:
-            output = method(*parameters)
-        except IndexError:
-            output = 'error'
-        if output:
-            print(output)
+    command_list = []
+    for line in range(commands_count):
+        command_list.append(tuple(input().split()))
+    for result in run(command_list):
+        print(result)

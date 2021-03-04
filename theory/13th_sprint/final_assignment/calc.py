@@ -1,5 +1,3 @@
-# success try: 49053795, 2 мрт 2021, 15:59:17, 55ms, 3.98Mb
-
 from collections.abc import Iterable
 
 ACTIONS = {

@@ -1,23 +1,33 @@
+import time
+
+
 def in_place_quick_sort(arr):
     left = 0
     right = len(arr) - 1
-    pivot = arr[(right+left) // 2]
+    pivot = arr[0]
     print(pivot)
+    pivots_count = 1
     while left < right:
         print('left: ', left, 'right: ', right, 'pivot: ', pivot)
         print(*arr)
-        # breakpoint()
+        # time.sleep(0.5)
+        left_element = arr[left]
+        right_element = arr[right]
+        breakpoint()
+        if (arr[left] > pivot >= arr[right]):
+            arr[left], arr[right] = arr[right], arr[left]
+            continue
+        if arr[left] == pivot and arr[right] == pivot:
+            arr[left], arr[right-pivots_count] = arr[right-pivots_count], arr[left]
+            pivots_count += 1
+            right += 1
+            # left -=1
+            continue
         if arr[left] < pivot:
             left += 1
         if arr[right] > pivot:
             right -= 1
-        if (arr[left] >= pivot >= arr[right]
-                # or arr[left] == pivot
-                # or arr[right] == pivot
-        ):
-            arr[left], arr[right] = arr[right], arr[left]
-            if arr[left] == pivot and arr[right] == pivot:
-                arr[left], arr[left+1] = arr[left+1], arr[left]
+
 
     return arr
 

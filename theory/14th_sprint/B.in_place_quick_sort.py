@@ -1,3 +1,41 @@
+class Participant:
+    def __init__(self, name, tasks, penalty):
+        self.name = name
+        self.tasks = int(tasks)
+        self.penalty = int(penalty)
+
+    def __gt__(self, other):
+        if self.tasks != other.tasks:
+            return self.tasks > other.tasks
+        if self.penalty != other.penalty:
+            return self.penalty < other.penalty
+        return self.name < other.name
+
+    def __lt__(self, other):
+        if self.tasks != other.tasks:
+            return self.tasks < other.tasks
+        if self.penalty != other.penalty:
+            return self.penalty > other.penalty
+        return self.name > other.name
+
+    def __ge__(self, other):
+        return self.__gt__(other) or self.__eq__(other)
+
+    def __le__(self, other):
+        return self.__lt__(other) or self.__eq__(other)
+
+    def __eq__(self, other):
+        return (self.tasks == other.tasks
+                and self.penalty == other.penalty
+                and self.name == other.name)
+
+    def __repr__(self):
+        return f'Participant {self.name} with {self.tasks} tasks and {self.penalty} penalty'
+
+    def __str__(self):
+        return self.name
+
+
 def in_place_quick_sort(arr, from_index=None, to_index=None, pivot=None):
     from_index = 0 if from_index is None else from_index
     to_index = len(arr) - 1 if to_index is None else to_index
@@ -45,8 +83,17 @@ def in_place_quick_sort(arr, from_index=None, to_index=None, pivot=None):
 
 
 if __name__ == '__main__':
+    participants = []
     with open('input.txt') as file:
-        a = [int(x) for x in file.readline().split()]
-        print(
-            in_place_quick_sort(a)
-        )
+        # a = [int(x) for x in file.readline().split()]
+        # print(
+        #     in_place_quick_sort(a)
+        # )
+        n = int(file.readline())
+        for i in range(n):
+            participants.append(
+                Participant(*file.readline().split())
+            )
+        in_place_quick_sort(participants)
+        for participant_index in range(1, n+1):
+            print(participants[-participant_index])

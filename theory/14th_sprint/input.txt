@@ -1,3 +1,6 @@
-9
-8
-6 7 8 9 1 2 3 4 5
+5
+alla 0 0
+gena 0 0
+gosha 0 0
+rita 0 0
+timofey 0 0

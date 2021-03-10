@@ -1,17 +1,17 @@
 def find_in_partially_sorted_array(array, required, from_index, to_index):
-    a = array[from_index]
+    a_index = from_index
     middle_index = (from_index + to_index) // 2
     median = array[middle_index]
     
-    b = array[to_index]
+    b_index = to_index
     if array[from_index] == required:
-        return from_index
+        return from_index  # TODO: Ускорить тут
     if from_index == to_index:
         return -1
     found = False
     while not found:
-        # breakpoint()
-        if a < required < median:
+        breakpoint()
+        if array[a_index] < required < median:
             left = find_in_partially_sorted_array(
                 array,
                 required,
@@ -20,23 +20,25 @@ def find_in_partially_sorted_array(array, required, from_index, to_index):
             )
             found = True
             return left
-        elif median <= required < b:
+        elif median <= required < array[b_index]:
             right = find_in_partially_sorted_array(
                 array,
                 required,
-                middle_index,
+                middle_index+1,
                 to_index)
             found = True
             return right
         else:
-            if required > a:  # 50% left
-                b = array[middle_index]
+            if required > array[a_index]:  # 50% left
+                b_index = middle_index
                 middle_index = (middle_index + from_index) // 2
-            elif required < a:  # 50% right
-                a = array[middle_index]
-                middle_index = (middle_index + to_index) // 2
+            elif required < array[a_index]:  # 50% right
+                a_index = middle_index
+                middle_index = (middle_index + to_index + 1) // 2
             median = array[middle_index]
-    # breakpoint()
+            if a_index == b_index:
+                found = True
+
     return -1
 
 

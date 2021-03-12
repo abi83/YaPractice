@@ -69,33 +69,38 @@ def in_place_quick_sort(arr, from_index=None, to_index=None, pivot=None):
             else:
                 left += 1
 
-    # good_pivot_left = arr[left_pivot_pos - 1]
+    good_pivot_left = arr[left_pivot_pos - 1]
 
     try:
         good_pivot_right = arr[right_pivot_pos + 1]
     except IndexError:
         good_pivot_right = arr[-1]
 
-    in_place_quick_sort(arr, from_index, left_pivot_pos - 1, arr[left_pivot_pos - 1])
+    in_place_quick_sort(arr, from_index, left_pivot_pos - 1, good_pivot_left)
     in_place_quick_sort(arr, right_pivot_pos + 1, to_index, good_pivot_right)
 
     return arr
 
 
 if __name__ == '__main__':
+    # console input
+    # n = int(input())
+    # participants = [None] * n
+    # for i in range(n):
+    #     participants[i] = Participant(*input().split())
+
+    # file input
     with open('input.txt') as file:
-        #  a = [int(x) for x in file.readline().split()]
-        #  print(
-        #      in_place_quick_sort(a)
-        # )
         n = int(file.readline())
-        # data = file.read()
-        # participants = [Participant(*x.split()) for x in data.split('\n')]
-        # print(participants)
         participants = [None] * n
         for i in range(n):
-            participants[i] = Participant(*file.readline().split())
-            # print(participants)
-        in_place_quick_sort(participants)
-        for participant_index in range(1, n+1):
-            print(participants[-participant_index])
+            # participants[i] = Participant(*file.readline().split())
+            data = file.readline().split()
+            participants[i] = tuple([-int(data[1]), int(data[2]), data[0]])
+
+    # print(participants)
+    # run
+    in_place_quick_sort(participants)
+    # print(participants)
+    for participant_index in range(n):
+        print(participants[participant_index][2])

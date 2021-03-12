@@ -1,4 +1,10 @@
-def binary_search(array, required, from_index, to_index):
+def binary_search(array, required, from_index: int, to_index: int) -> int:
+    """
+    Just one more version of binary search in sorted array
+    @param from_index: Index to search from
+    @param to_index: Index to search to
+    @return: Index of required element. -1 if not found
+    """
     if array[from_index] == required:
         return from_index
     if from_index == to_index:
@@ -26,19 +32,24 @@ def find_in_partially_sorted_array(array, required):
         return -1
 
 
-def find_broken_index_cool(arr, from_index, to_index):
+def find_broken_index_cool(arr):
+    """
+    Very cool way to find broken index. Requires O(n) time, but tests passed!
+    """
     return arr.index(min(*arr))
 
 
 def find_broken_index(arr, from_index, to_index):
+    """
+    O(log(n)) binary algorithm of broken index search
+    """
     if to_index-from_index <= 1:
-        b = arr.index(min(arr[from_index:to_index+1]))
-        return b
+        return arr.index(min(arr[from_index:to_index+1]))
     middle_index = (from_index + to_index) // 2
 
     if arr[middle_index] > arr[from_index]:
-        #левая половина стабильно растет, разрыва в ней нет
-        #отправляем рекурсию в правую половину
+        # left half of array increases, not break in it
+        # trying to find broken index in right half
         return find_broken_index(arr, middle_index, to_index)
     else:
         return find_broken_index(arr, from_index, middle_index)
@@ -50,6 +61,3 @@ if __name__ == '__main__':
         k = int(file.readline())
         arr = [int(x) for x in file.readline().split()]
     print(find_in_partially_sorted_array(arr, k))
-    # print(find_broken_index(arr, 0, len(arr)-1))
-    # print(binary_search(arr, k, 4, 10))
-

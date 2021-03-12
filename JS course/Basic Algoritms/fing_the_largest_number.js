@@ -3,7 +3,7 @@ function largestOfFour(arr) {
   for (let smallAr of arr){
       largestArr.push(Math.max(...smallAr));
       console.log(largestArr);
-      // largestArr = arr;
+      // largestArr = array;
   }
   return largestArr;
 }

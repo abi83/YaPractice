@@ -24,5 +24,5 @@ if __name__ == '__main__':
     with open('input.txt') as file:
         n = file.readline()
         arr = [int(x) for x in file.readline().strip().split()]
-    # print(arr)
+    # print(array)
     bubble_sort(arr)

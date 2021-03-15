@@ -58,18 +58,19 @@ function checkCashRegister(price, cash, cid) {
       }
     })
     .filter((element) => element.quantity)
-  )
+  );
   // console.log('End: cidRemains', cidRemains)//.toFixed(2))
   // console.log('End: changeRemains', changeRemains)//.toFixed(2))
-  if (changeRemains > 0)
+  if (changeRemains > 0) {
     return {status: "INSUFFICIENT_FUNDS", change: []}
-  let changeArr = []
-  for (let element of changeObj) {
-      changeArr.push([element.name, element.value])
   }
-  if (cidRemains.toFixed(2) === '0.00')
-    return {status: "CLOSED", change: changeArr}
-
+  let changeArr = [];
+  for (let element of changeObj) {
+      changeArr.push([element.name, element.value]);
+  }
+  if (cidRemains.toFixed(2) === '0.00'){
+    return {status: "CLOSED", change: changeArr};
+  }
   return {status: "OPEN", change: cid}
 ;
 }

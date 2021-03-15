@@ -1,45 +1,3 @@
-class Participant:
-    """
-    A very simple class for participants comparison,
-    but unfortunately very slow
-    """
-    def __init__(self, name, tasks, penalty):
-        self.name = name
-        self.tasks = int(tasks)
-        self.penalty = int(penalty)
-
-    def __gt__(self, other):
-        if self.tasks != other.tasks:
-            return self.tasks > other.tasks
-        if self.penalty != other.penalty:
-            return self.penalty < other.penalty
-        return self.name < other.name
-
-    def __lt__(self, other):
-        if self.tasks != other.tasks:
-            return self.tasks < other.tasks
-        if self.penalty != other.penalty:
-            return self.penalty > other.penalty
-        return self.name > other.name
-
-    def __ge__(self, other):
-        return self.__gt__(other) or self.__eq__(other)
-
-    def __le__(self, other):
-        return self.__lt__(other) or self.__eq__(other)
-
-    def __eq__(self, other):
-        return (self.tasks == other.tasks
-                and self.penalty == other.penalty
-                and self.name == other.name)
-
-    def __repr__(self):
-        return f'Participant "{self.name}" with {self.tasks} tasks and {self.penalty} penalty'
-
-    def __str__(self):
-        return self.name
-
-
 def in_place_quick_sort(
         array,
         from_index: int = None,
@@ -103,15 +61,15 @@ def in_place_quick_sort(
 
 if __name__ == '__main__':
     with open('input.txt') as in_file:
-        n = int(in_file.readline())
-        participants = [None] * n
+        elements_number = int(in_file.readline())
+        participants = []
 
-        for index in range(n):
+        for index in range(elements_number):
             data = in_file.readline().split()
             participants[index] = tuple([-int(data[1]), int(data[2]), data[0]])
 
     # run
     in_place_quick_sort(participants)
     # output
-    for participant_index in range(n):
+    for participant_index in range(elements_number):
         print(participants[participant_index][2])

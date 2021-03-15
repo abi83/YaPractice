@@ -14,62 +14,49 @@ def in_place_quick_sort(
     """
     from_index = 0 if from_index is None else from_index
     to_index = len(array) - 1 if to_index is None else to_index
-    pivot = array[0] if pivot is None else pivot
-
     if to_index <= from_index:
         return
-    left, right = from_index, to_index
-    left_pivot_pos, right_pivot_pos = from_index, to_index
-    double_pivot = False
-    while left <= right_pivot_pos:
-        if not double_pivot:
-            if array[left] >= pivot >= array[right]:
-                if array[left] == pivot == array[right]:
-                    left_pivot_pos, right_pivot_pos = left, right
-                    double_pivot = True
-                    continue
-                array[left], array[right] = array[right], array[left]
-            if array[left] < pivot:
-                left += 1
-            if array[right] > pivot:
-                right -= 1
-        else:
-            if array[left] < pivot:
-                array[left_pivot_pos], array[left] =\
-                    array[left], array[left_pivot_pos]
-                left_pivot_pos += 1
-                left += 1
-            elif array[left] > pivot:
-                array[left], array[right_pivot_pos] =\
-                    array[right_pivot_pos], array[left]
-                right_pivot_pos -= 1
-            else:
-                left += 1
+    pivot = array[to_index] if pivot is None else pivot
 
-    try:
-        good_pivot_right = array[right_pivot_pos + 1]
-    except IndexError:
-        good_pivot_right = array[-1]
+    left = from_index
+    right_pivot_pos = to_index
+    left_pivot_pos = to_index
+    while left < left_pivot_pos:
+        if array[left] < pivot:
+            left += 1
+        elif array[left] > pivot:
+            array[left], array[right_pivot_pos] = array[right_pivot_pos], array[left]
+            right_pivot_pos -= 1
+        elif array[left] == pivot:
+            left_pivot_pos -= 1
+            array[left], array[left_pivot_pos] = array[left_pivot_pos], array[left]
 
-    in_place_quick_sort(array, from_index, left_pivot_pos - 1,
-                        array[left_pivot_pos - 1])
-    in_place_quick_sort(array, right_pivot_pos + 1, to_index,
-                        good_pivot_right)
+    in_place_quick_sort(array, from_index, left_pivot_pos - 1)
+    in_place_quick_sort(array, right_pivot_pos + 1, to_index)
 
     return array
 
 
 if __name__ == '__main__':
     with open('input.txt') as in_file:
-        elements_number = int(in_file.readline())
-        participants = []
+        participants = [int(x) for x in in_file.readline().split()]
 
-        for index in range(elements_number):
-            data = in_file.readline().split()
-            participants[index] = tuple([-int(data[1]), int(data[2]), data[0]])
 
+
+
+
+    # from collections import namedtuple
+    # Participant = namedtuple('Participant', ['name', 'tasks', 'penalty'])
+    #
+    # with open('input.txt') as in_file:
+    #     elements_number = int(in_file.readline())
+    #     participants = []
+    #
+    #     for index in range(elements_number):
+    #         participants.append(Participant(*in_file.readline().split()))
     # run
     in_place_quick_sort(participants)
     # output
-    for participant_index in range(elements_number):
-        print(participants[participant_index][2])
+    # for participant in participants:
+    #     print(participant)
+    print(participants)

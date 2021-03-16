@@ -46,7 +46,7 @@ def find_broken_index(arr, from_index, to_index):
 
 if __name__ == '__main__':
     with open('input.txt') as file:
-        n = int(file.readline())
-        k = int(file.readline())
+        file.readline()
+        required = int(file.readline())
         arr = [int(x) for x in file.readline().split()]
-    print(find_in_partially_sorted_array(arr, k))
+    print(find_in_partially_sorted_array(arr, required))

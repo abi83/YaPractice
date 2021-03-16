@@ -1,10 +1,10 @@
+# success try: 49534211, 16 мар 2021, 21:55:36, 1.532s, 29.95Mb
+
 def in_place_quick_sort(array, compare_func=None) -> None:
     """
     Just one more version of in place quick sort algorithm. Array is
     sorted on place, without extra memory usage. Default sorting is ascending.
     @param array: Any iterable of objects with defined comparison methods
-    @param from_index: Index to start sorting
-    @param to_index: Index to end sorting
     @param compare_func: function of x,y returning True if x > y, esle False
     @return: None
     """
@@ -13,24 +13,27 @@ def in_place_quick_sort(array, compare_func=None) -> None:
     if compare_func is None:
         compare_func = lambda x, y: x > y
 
-    def inner_in_place_quick_sort(array, from_index, to_index, compare_func):
-        if to_index <= from_index:
-            return
-
-        pivot = array[(to_index + from_index)//2]
+    def run_compare_around_pivot(from_index, to_index):
+        pivot = array[from_index]
         left, right = from_index, to_index
-        while left < right:
+        while True:
             while compare_func(pivot, array[left]):
                 left += 1
             while compare_func(array[right], pivot):
                 right -= 1
-            if left < right:
-                array[left], array[right] = array[right], array[left]
+            if left >= right:
+                return right
+            array[left], array[right] = array[right], array[left]
+            left += 1
+            right -= 1
 
-        inner_in_place_quick_sort(array, from_index, left,
-                                  compare_func=compare_func)
-        inner_in_place_quick_sort(array, left+1, to_index,
-                                  compare_func=compare_func)
+    def inner_in_place_quick_sort(array, from_index, to_index, compare_func):
+        if from_index < to_index:
+            pivot_index = run_compare_around_pivot(from_index, to_index)
+            inner_in_place_quick_sort(array, from_index, pivot_index,
+                                      compare_func=compare_func)
+            inner_in_place_quick_sort(array, pivot_index+1, to_index,
+                                      compare_func=compare_func)
 
     inner_in_place_quick_sort(array, from_index, to_index, compare_func)
 
@@ -47,13 +50,6 @@ if __name__ == '__main__':
             line = data[index].split()
             participants[index] = Participant(
                 name=line[0], tasks=int(line[1]), penalty=int(line[2]))
-
-    # def participants_compare(participant_x, participant_y):
-    #     if participant_x.tasks != participant_y.tasks:
-    #         return participant_x.tasks < participant_y.tasks
-    #     if participant_x.penalty != participant_y.penalty:
-    #         return participant_x.penalty > participant_y.penalty
-    #     return participant_x.name > participant_y.name
 
     def participants_compare(participant_x, participant_y):
         if participant_x.tasks < participant_y.tasks:

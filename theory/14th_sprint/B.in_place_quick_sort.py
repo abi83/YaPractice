@@ -8,8 +8,6 @@ def in_place_quick_sort(array, compare_func=None) -> None:
     @param compare_func: function of x,y returning True if x > y, esle False
     @return: None
     """
-    from_index = 0
-    to_index = len(array) - 1
     if compare_func is None:
         compare_func = lambda x, y: x > y
 
@@ -35,7 +33,7 @@ def in_place_quick_sort(array, compare_func=None) -> None:
             inner_in_place_quick_sort(array, pivot_index+1, to_index,
                                       compare_func=compare_func)
 
-    inner_in_place_quick_sort(array, from_index, to_index, compare_func)
+    inner_in_place_quick_sort(array, 0, len(array) - 1, compare_func)
 
 
 if __name__ == '__main__':

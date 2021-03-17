@@ -1,4 +1,4 @@
-# success try: 49526481, 16 мар 2021, 19:52:00. 51ms 3.95Mb
+# success try: 49551052	, 17 мар 2021, 15:09:45. 51ms 3.95Mb
 
 def binary_search(array, required, from_index: int, to_index: int) -> int:
     """
@@ -21,20 +21,20 @@ def binary_search(array, required, from_index: int, to_index: int) -> int:
 
 
 def find_in_partially_sorted_array(array, required):
-    def _find_broken_index(broken_array, from_index, to_index):
+    def _find_broken_index(from_index, to_index):
         if to_index - from_index <= 1:
-            return to_index if arr[to_index] < arr[from_index] else from_index
+            return to_index if array[to_index] < array[from_index] else from_index
         middle_index = (from_index + to_index) // 2
 
         if arr[middle_index] > arr[from_index]:
             # left half of array increases, not break in it
             # trying to find broken index in right half
-            return _find_broken_index(broken_array, middle_index, to_index)
-        return _find_broken_index(broken_array, from_index, middle_index)
+            return _find_broken_index(middle_index, to_index)
+        return _find_broken_index(from_index, middle_index)
 
     if len(array) == 0:
         return -1
-    broken_index = _find_broken_index(array, 0, len(array) - 1)
+    broken_index = _find_broken_index(0, len(array) - 1)
     if broken_index == 0:
         return binary_search(array, required, 0, len(array) - 1)
     if array[0] <= required <= array[broken_index - 1]:

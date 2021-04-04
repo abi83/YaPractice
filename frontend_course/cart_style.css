@@ -1,0 +1,116 @@
+.page {
+  margin: 0;
+  font-family: 'Roboto Mono';
+  box-sizing: border-box;
+  padding: 24px 20px;
+  color: #0C0C0D;
+}
+
+.page__title {
+  margin: 0 0 24px;
+  font-size: 24px;
+}
+
+.chosen-items {
+  display: grid;
+  box-sizing: border-box;
+  gap: 1px;
+}
+
+.card {
+  box-sizing: border-box;
+  padding: 8px 32px 8px 8px;
+  box-shadow: 0 0 0 1px #0C0C0D;
+  display: flex;
+  align-items: center;
+}
+
+.card__image {
+  object-fit: contain;
+  width: 120px;
+  height: 120px;
+  object-position: center;
+  margin-right: 16px;
+}
+
+.card__title {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.card__description {
+  flex-grow: 1;
+}
+
+.card__text {
+  font-size: 14px;
+  line-height: 1.44;
+  opacity: .4;
+  margin: 4px 0;
+}
+
+.card__price {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+.price-discounted {
+  opacity: .4;
+  text-decoration: line-through;
+  margin: 0;
+}
+
+.price-with-discount {
+  color: #3C39EC;
+}
+
+.price-default {
+  color: #3C39EC;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.page__total {
+  margin-top: 24px;
+}
+
+.total__button {
+  border: none;
+  box-sizing: border-box;
+  background-color: #0C0C0D;
+  color: #fff;
+  box-shadow: 0 0 0 1px #0C0C0D;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  transition: opacity .3s ease-in-out;
+}
+
+.total__button:hover {
+  opacity: .9;
+  cursor: pointer;
+}
+
+.total__prices {
+  text-align: right;
+}
+
+.total__title {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.total__rub {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+

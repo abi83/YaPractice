@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина заказов</title>
+    <link rel="stylesheet" href="https://code.s3.yandex.net/web-code/entrance-test/lesson-2/task-2/fonts.css">
+    <link rel="stylesheet" href="cart_style.css">
+  </head>
+  <body class="page">
+  <h1 class="page__title">Корзина</h1>
+  <section class="chosen-items">
+    <article class="card">
+      <img src="https://code.s3.yandex.net/web-code/entrance-test/jacket.png" alt="" class="card__image">
+      <div class="card__description">
+        <h2 class="card__title">Have A Good Time x FA Two Tone куртка</h2>
+        <p class="card__text">Цвет: Зеленый/Оранжевый</p>
+        <p class="card__text">Размер: M</p>
+        <p class="card__text">Количество: 1</p>
+      </div>
+      <div class="card__price">
+        <p class="card__rub price-default"><span class="price-value">15890</span> руб.</p>
+      </div>
+    </article>
+    <article class="card">
+      <img src="https://code.s3.yandex.net/web-code/entrance-test/vans.png" alt="" class="card__image">
+      <div class="card__description">
+        <h2 class="card__title">Vans Old Skool кеды</h2>
+        <p class="card__text">Цвет: Черный/Белый</p>
+        <p class="card__text">Размер: 43</p>
+        <p class="card__text">Количество: 1</p>
+      </div>
+      <div class="card__price">
+        <p class="card__rub price-default"><span class="price-value">6390</span> руб.</p>
+      </div>
+    </article>
+    <article class="card">
+      <img src="https://code.s3.yandex.net/web-code/entrance-test/pop-DRS.png" alt="" class="card__image">
+      <div class="card__description">
+        <h2 class="card__title">Pop DRS Denim Stonewashed джинсы</h2>
+        <p class="card__text">Цвет: Голубой</p>
+        <p class="card__text">Размер: S</p>
+        <p class="card__text">Количество: 1</p>
+      </div>
+      <div class="card__price">
+        <p class="card__rub price-default"><span class="price-value">11290</span> руб.</p>
+      </div>
+    </article>
+    <article class="card">
+      <img src="https://code.s3.yandex.net/web-code/entrance-test/by-parra.png" alt="" class="card__image">
+      <div class="card__description">
+        <h2 class="card__title">By Parra ремень</h2>
+        <p class="card__text">Цвет: Мульти</p>
+        <p class="card__text">Размер: S</p>
+        <p class="card__text">Количество: 1</p>
+      </div>
+      <div class="card__price">
+        <p class="card__rub price-default"><span class="price-value">8550</span> руб.</p>
+      </div>
+    </article>
+    <article class="card">
+      <img src="https://code.s3.yandex.net/web-code/entrance-test/board.png" alt="" class="card__image">
+      <div class="card__description">
+        <h2 class="card__title">Fucking Awesome Drawings 2 Pink доска</h2>
+        <p class="card__text">Цвет: Розовый флюросентный</p>
+        <p class="card__text">Размер: Один размер</p>
+        <p class="card__text">Количество: 1</p>
+      </div>
+      <div class="card__price">
+        <p class="card__rub price-default"><span class="price-value">4790</span> руб.</p>
+      </div>
+    </article>
+  </section>
+  <section class="total page__total">
+    <button class="total__button" onclick="applyDiscount()">Использовать купон на 15%</button>
+    <div class="total__prices">
+      <h2 class="total__title">Итого:</h2>
+      <p class="total__rub price-default"><span class="total-price-value">46910</span> руб.</p>
+    </div>
+  </section>
+  <script src="cart.js"></script>
+  </body>
+</html>

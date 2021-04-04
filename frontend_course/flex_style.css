@@ -1,0 +1,34 @@
+.container {
+  display: grid;
+  grid-template-columns:  repeat(3, 1fr);
+  grid-template-rows: repeat(2,100px);
+  background-color: beige;
+  gap: 10px;
+  grid-template-areas: 'header header header'
+                       'nav nav nav'
+                       'aside content content'
+                       'aside section section'
+                       'footer footer footer';
+}
+.container > div {
+  background-color: green;
+  font-size: 40px;
+}
+#one {
+  grid-area: header;
+}
+#two {
+ grid-area: nav;
+}
+#three {
+  grid-area: aside;
+}
+#four {
+  grid-area: content;
+}
+#five {
+  grid-area: section;
+}
+#six {
+  grid-area: footer;
+}

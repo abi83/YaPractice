@@ -1,0 +1,83 @@
+.page {
+  margin: 0;
+  font-family: Inter;
+  background-color: #3C39EC;
+}
+
+.header {
+  min-height: 116px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__logo {
+  width: 43px;
+}
+
+.catalog {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.page__catalog {
+  width: 70%;
+  margin: auto;
+}
+
+.card {
+  flex-grow: 1;
+  flex-basis: 20%;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog__card {
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.card__image {
+  width: 100%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+}
+
+.card__info {
+  box-sizing: border-box;
+  padding: 10px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.card__info_theme_dark {
+  background-color: #000;
+  color: #fff;
+}
+
+.card__info_theme_light {
+  background-color:#fff;
+  color: #000;
+}
+
+.card__title {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0 0 5px;
+}
+
+.card__text {
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0 0 5px;
+}
+@media screen and (max-width: 380px) {
+  .page__catalog{
+    width: 95%;
+  }
+  .card{
+    flex-basis: 40%;
+  }
+}

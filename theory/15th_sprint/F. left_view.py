@@ -3,20 +3,6 @@ class Node:
         self.value = value
         self.right = right
         self.left = left
-    #
-    # def __str__(self):
-    #     return f'Node: {self.value}'
-    #
-    # def __repr__(self):
-    #     return f'Node: {self.value}'
-    #
-    #
-    # def __str__(self):
-    #     return f'Node {self.node.value}, level:{self.level}, leftness: {self.leftness}'
-    #
-    # def __repr__(self):
-    #     return f'Node {self.node.value}, level:{self.level}, leftness: {self.leftness}'
-
 
 def solution(node):
     class EElement:
@@ -62,5 +48,5 @@ n22 = Node(22, left=n33)
 n1 = Node(10, left=n21, right=n22)
 
 o = solution(n1)
-# breakpoint()
+
 print(o)

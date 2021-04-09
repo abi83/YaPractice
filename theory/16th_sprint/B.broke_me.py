@@ -19,7 +19,6 @@ def string_generator(size=8, chars=string.ascii_lowercase):
 hashes = {}
 mem = 0
 
-
 while True:
     a = string_generator(random.randint(4, 20))
     try:

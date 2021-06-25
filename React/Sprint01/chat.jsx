@@ -1,5 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './styles.css';
+
+const messagePropTypes = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  user: PropTypes.string.isRequired,
+  replyTo: PropTypes.number,
+  text: PropTypes.string.isRequired
+});
 
 const Message = ({ message, repliedMessage, className = 'message' }) => (
   <div className={className}>
@@ -9,7 +17,18 @@ const Message = ({ message, repliedMessage, className = 'message' }) => (
   </div>
 );
 
+Message.propTypes = {
+  message: messagePropTypes.isRequired,
+  repliedMessage: messagePropTypes,
+  className: PropTypes.string
+};
+
 const RepliedMessage = ({ message }) => <Message message={message} className={'replied-message'} />;
+
+RepliedMessage.propTypes = {
+  message: messagePropTypes.isRequired,
+  className: PropTypes.string
+};
 
 const Chat = ({ thread }) => (
   <div className="tread">
@@ -23,6 +42,10 @@ const Chat = ({ thread }) => (
     )
   </div>
 );
+
+Chat.propTypes = {
+  thread: PropTypes.arrayOf(messagePropTypes)
+};
 
 export default class App extends React.Component {
   state = {

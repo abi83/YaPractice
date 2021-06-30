@@ -1,0 +1,52 @@
+.pad {
+  font-family: 'JetBrains Mono', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 12px;
+}
+
+.btn {
+  padding: 0;
+  cursor: pointer;
+  line-height: 1;
+  border: none;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  outline: none;
+  font-size: 24px;
+  font-family: 'JetBrains Mono', Helvetica, Arial, sans-serif;
+}
+
+.btn_equal {
+  background-color: #57a2ff;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #eaeaea;
+}
+
+.btn:active {
+  background-color: #f1f1f1;
+}
+
+.display {
+  font-size: 24px;
+  border-radius: 12px;
+  line-height: 1;
+  text-align: right;
+  grid-area: 1 / 1 / 2 / 4;
+  background-color: #EFEFEF;
+  padding: 0 12px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}

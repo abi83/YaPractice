@@ -26,8 +26,5 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Follow)
 class FollowAdmin(admin.ModelAdmin):
-    # list_display = ('pk', 'author', 'user')
-    # list_filter = ('author', 'user')
-    # TODO: return it back after the work is accepted
-    list_display = ('pk', 'following', 'user')
-    list_filter = ('following', 'user')
+    list_display = ('pk', 'author', 'user')
+    list_filter = ('author', 'user')

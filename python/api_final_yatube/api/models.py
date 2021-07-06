@@ -151,8 +151,6 @@ class Follow(models.Model):
         related_name='follower',
         on_delete=models.CASCADE,
     )
-    # author = models.ForeignKey(
-    # TODO: return it back after the work is accepted
     following = models.ForeignKey(
         User,
         verbose_name='Автор (following)',
@@ -166,7 +164,7 @@ class Follow(models.Model):
         verbose_name_plural = 'Подписки'
         constraints = [
             models.UniqueConstraint(
-                fields=['user', 'following'],  # TODO: this one also
+                fields=['user', 'following'],
                 name='twice_follow_impossible'),
             models.CheckConstraint(check=~models.Q(following=models.F('user')),
                                    name='you cant follow yourself')

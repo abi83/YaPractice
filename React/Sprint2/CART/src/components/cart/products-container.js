@@ -7,9 +7,7 @@ import { MainButton } from '../../ui/main-button/main-button';
 import { PromoButton } from '../../ui/promo-button/promo-button';
 import { Loader } from '../../ui/loader/loader';
 
-export const ProductsContainer = () => {
-  const [totalPrice, setTotalPrice] = React.useState(0);
-  const [discount, setDiscount] = React.useState(null);
+export const ProductsContainer = ({totalPrice, discount, setTotalPrice, setDiscount}) => {
 
   const [data, setData] = useState([]);
   const [promo, setPromo] = useState('');

@@ -7,11 +7,9 @@ import { MainButton } from '../../ui/main-button/main-button';
 import { PromoButton } from '../../ui/promo-button/promo-button';
 import { Loader } from '../../ui/loader/loader';
 
-export const ProductsContainer = ({totalPrice, discount, setTotalPrice, setDiscount}) => {
-
+export const ProductsContainer = ({ setTotalPrice, totalPrice, setDiscount, discount }) => {
   const [data, setData] = useState([]);
   const [promo, setPromo] = useState('');
-
   const [itemsRequest, setItemsRequest] = useState(false);
   const [promoFailed, setPromoFailed] = useState(false);
   const [promoRequest, setPromoRequest] = useState(false);
@@ -127,7 +125,11 @@ export const ProductsContainer = ({totalPrice, discount, setTotalPrice, setDisco
             {promoRequest ? <Loader size="small" inverse={true} /> : 'Применить'}
           </MainButton>
         </div>
-        {promo && <PromoButton extraClass={styles.promocode} setPromo={setPromo} setDiscount={setDiscount}>{promo}</PromoButton>}
+        {promo && (
+          <PromoButton extraClass={styles.promocode} setPromo={setPromo} setDiscount={setDiscount}>
+            {promo}
+          </PromoButton>
+        )}
       </div>
       {promoCodeStatus}
     </div>

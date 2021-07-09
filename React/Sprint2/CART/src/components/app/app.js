@@ -7,12 +7,17 @@ import { TotalPrice } from '../common/total-price';
 function App() {
   const [totalPrice, setTotalPrice] = React.useState(0);
   const [discount, setDiscount] = React.useState(null);
-  
+
   return (
     <div className={styles.app}>
       <Title text={'Корзина'} />
-      <Cart totalPrice={totalPrice} discount={discount} setTotalPrice={setTotalPrice} setDiscount={setDiscount}/>
-      <TotalPrice totalPrice={totalPrice} discount={discount}/>
+      <Cart
+        setTotalPrice={setTotalPrice}
+        totalPrice={totalPrice}
+        setDiscount={setDiscount}
+        discount={discount}
+      />
+      <TotalPrice totalPrice={totalPrice} discount={discount} />
     </div>
   );
 }

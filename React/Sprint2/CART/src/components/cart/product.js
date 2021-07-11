@@ -1,21 +1,16 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { AmountButton } from '../../ui/amount-button/amount-button';
 import { DeleteButton } from '../../ui/delete-button/delete-button';
 import styles from './product.module.css';
-import {TotalPriceContext, DiscountContext, DataContext} from '../../services/appContext';
 
-export const Product = ({
-  src,
-  id,
-  text,
-  qty,
-  price,
-}) => {
-  
-  const { totalPrice, setTotalPrice } = React.useContext(TotalPriceContext);
-  const { discount } = React.useContext(DiscountContext);
-  const { data, setData} = React.useContext(DataContext);
-  
+import { DiscountContext, TotalPriceContext } from '../../services/appContext';
+import { DataContext } from '../../services/productsContext';
+
+export const Product = ({ src, id, text, qty, price }) => {
+  const { totalPrice, setTotalPrice } = useContext(TotalPriceContext);
+  const { discount } = useContext(DiscountContext);
+  const { data, setData } = useContext(DataContext);
+
   const discountedPrice = useMemo(() => ((price - price * (discount / 100)) * qty).toFixed(0), [
     discount,
     price,

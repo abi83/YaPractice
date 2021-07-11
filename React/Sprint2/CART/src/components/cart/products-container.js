@@ -1,19 +1,22 @@
-import React, { useCallback, useEffect, useRef, useMemo, useState } from 'react';
-import { getItemsRequest, applyPromoCodeRequest } from '../../services/fakeApi';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { applyPromoCodeRequest, getItemsRequest } from '../../services/fakeApi';
 import styles from './products-container.module.css';
 import { Product } from './product';
 import { Input } from '../../ui/input/input';
 import { MainButton } from '../../ui/main-button/main-button';
 import { PromoButton } from '../../ui/promo-button/promo-button';
 import { Loader } from '../../ui/loader/loader';
-import {DiscountContext, TotalPriceContext, PromoContext, DataContext} from '../../services/appContext';
+
+import { DiscountContext, TotalPriceContext } from '../../services/appContext';
+import { DataContext, PromoContext } from '../../services/productsContext';
 
 export const ProductsContainer = () => {
-  const { totalPrice, setTotalPrice } = React.useContext(TotalPriceContext);
-  const { discount, setDiscount } = React.useContext(DiscountContext);
-  
+  const { setTotalPrice } = useContext(TotalPriceContext);
+  const { setDiscount } = useContext(DiscountContext);
+
   const [data, setData] = useState([]);
   const [promo, setPromo] = useState('');
+
   const [itemsRequest, setItemsRequest] = useState(false);
   const [promoFailed, setPromoFailed] = useState(false);
   const [promoRequest, setPromoRequest] = useState(false);
@@ -76,16 +79,11 @@ export const ProductsContainer = () => {
         <Loader size="large" />
       ) : (
         data.map((item, index) => {
-          return (
-            <Product
-              key={index}
-              {...item}
-            />
-          );
+          return <Product key={index} {...item} />;
         })
       );
     },
-    [itemsRequest, data, discount, setTotalPrice, totalPrice]
+    [itemsRequest, data]
   );
 
   const promoCodeStatus = useMemo(
@@ -126,12 +124,7 @@ export const ProductsContainer = () => {
                 {promoRequest ? <Loader size="small" inverse={true} /> : 'Применить'}
               </MainButton>
             </div>
-            {promo && (
-              <PromoButton extraClass={styles.promocode}
-              >
-                {promo}
-              </PromoButton>
-            )}
+            {promo && <PromoButton extraClass={styles.promocode}>{promo}</PromoButton>}
           </div>
           {promoCodeStatus}
         </PromoContext.Provider>

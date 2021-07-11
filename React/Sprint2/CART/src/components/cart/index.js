@@ -2,16 +2,14 @@ import React from 'react';
 import { Tabs } from './tabs';
 import { ProductsContainer } from './products-container';
 
-export const Cart = ({ setTotalPrice, totalPrice, setDiscount, discount }) => {
+
+export const Cart = () => {
+  
+  
   return (
     <section>
       <Tabs />
-      <ProductsContainer
-        setTotalPrice={setTotalPrice}
-        totalPrice={totalPrice}
-        setDiscount={setDiscount}
-        discount={discount}
-      />
+      <ProductsContainer />
     </section>
   );
 };

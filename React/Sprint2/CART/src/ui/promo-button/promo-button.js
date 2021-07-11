@@ -7,11 +7,11 @@ import { PromoContext } from '../../services/productsContext';
 
 export const PromoButton = ({ children, extraClass }) => {
   const { setPromo } = useContext(PromoContext);
-  const { setDiscount } = useContext(DiscountContext);
+  const { discountDispatcher } = useContext(DiscountContext);
 
   const cancelPromo = () => {
     setPromo('');
-    setDiscount(null);
+    discountDispatcher({type: 'reset'});
   };
 
   return (

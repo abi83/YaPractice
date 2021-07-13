@@ -7,12 +7,12 @@ import { MainButton } from '../../ui/main-button/main-button';
 import { PromoButton } from '../../ui/promo-button/promo-button';
 import { Loader } from '../../ui/loader/loader';
 
-import { DiscountContext, TotalPriceContext } from '../../services/appContext';
+import { DiscountContext, TotalCostContext } from '../../services/appContext';
 import { DataContext, PromoContext } from '../../services/productsContext';
 
 export const ProductsContainer = () => {
-  const { setTotalPrice } = useContext(TotalPriceContext);
-  const { discountDispatcher, discountState } = useContext(DiscountContext);
+  const { setTotalPrice } = useContext(TotalCostContext);
+  const { setDiscount } = useContext(DiscountContext);
 
   const [data, setData] = useState([]);
   const [promo, setPromo] = useState('');
@@ -53,16 +53,15 @@ export const ProductsContainer = () => {
       setPromoRequest(true);
       applyPromoCodeRequest(inputValue)
         .then(res => {
-          console.log(res)
           if (res && res.success) {
             setPromo(inputValue);
-            discountDispatcher({type: 'set', payload: res.discount});
+            setDiscount(res.discount);
             setPromoRequest(false);
             setPromoFailed(false);
           } else {
             setPromoFailed(true);
             setPromoRequest(false);
-            discountDispatcher({type: 'reset'});
+            setDiscount(0);
             setPromo('');
           }
         })
@@ -71,7 +70,7 @@ export const ProductsContainer = () => {
           setPromoRequest(false);
         });
     },
-    [discountState]
+    [setDiscount]
   );
 
   const content = useMemo(

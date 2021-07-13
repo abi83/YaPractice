@@ -8,7 +8,7 @@ import { TotalCostContext, DiscountContext } from '../../services/appContext';
 
 function App() {
   const [totalPrice, setTotalPrice] = useState(0);
-  const [discount, setDiscount] = useState(null);
+  const [discount, setDiscount] = useState(0);
 
   return (
     <div className={styles.app}>

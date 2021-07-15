@@ -2,13 +2,15 @@ import React, { useContext, useMemo } from 'react';
 import { AmountButton } from '../../ui/amount-button/amount-button';
 import { DeleteButton } from '../../ui/delete-button/delete-button';
 import styles from './product.module.css';
-import { DiscountContext, TotalCostContext } from '../../services/appContext';
+import { useSelector } from 'react-redux'
+
+// import { DiscountContext, TotalCostContext } from '../../services/appContext';
 import { useDispatch } from 'react-redux';
 import { DECREASE_ITEM, DELETE_ITEM, INCREASE_ITEM } from '../../services/actions/cart';
 
 export const Product = ({ src, id, text, qty, price }) => {
-  const { totalPrice, setTotalPrice } = useContext(TotalCostContext);
-  const { discount } = useContext(DiscountContext);
+  // const { totalPrice, setTotalPrice } = useContext(TotalCostContext);
+  const discount = useSelector(state => state.cart.promoDiscount);
   const dispatch = useDispatch();
 
   const discountedPrice = useMemo(() => ((price - price * (discount / 100)) * qty).toFixed(0), [
@@ -28,7 +30,7 @@ export const Product = ({ src, id, text, qty, price }) => {
     if (qty === 1) {
       onDelete();
     } else {
-      setTotalPrice(totalPrice - price);
+      // setTotalPrice(totalPrice - price);
       dispatch({
         type: DECREASE_ITEM,
         id
@@ -36,7 +38,7 @@ export const Product = ({ src, id, text, qty, price }) => {
     }
   };
   const increase = () => {
-    setTotalPrice(totalPrice + price);
+    // setTotalPrice(totalPrice + price);
     dispatch({
       type: INCREASE_ITEM,
       id

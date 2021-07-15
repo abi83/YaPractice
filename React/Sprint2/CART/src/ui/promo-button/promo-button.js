@@ -1,17 +1,20 @@
 import React, { useContext } from 'react';
+import { useDispatch } from 'react-redux'
+import {
+  CANCEL_PROMO,
+} from '../../services/actions/cart';
+
 import styles from './promo-button.module.css';
 import closeIcon from '../../images/close.svg';
 
-import { DiscountContext } from '../../services/appContext';
-import { PromoContext } from '../../services/productsContext';
-
 export const PromoButton = ({ children, extraClass }) => {
-  const { setPromo } = useContext(PromoContext);
-  const { setDiscount } = useContext(DiscountContext);
+  // const { setPromo } = useContext(PromoContext);
+  // const { setDiscount } = useContext(DiscountContext);
 
+  const dispatch = useDispatch()
+  
   const cancelPromo = () => {
-    setPromo('');
-    setDiscount(0);
+    dispatch({type: CANCEL_PROMO})
   };
 
   return (

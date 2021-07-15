@@ -3,6 +3,7 @@ import styles from './app.module.css';
 import { Title } from '../../ui/title/title';
 import { Cart } from '../cart';
 import { TotalPrice } from '../common/total-price';
+import { Recommend } from '../cart/recommend';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Title text={'Корзина'} />
       <Cart />
       <TotalPrice />
+      <Recommend extraClass={styles.recommend} />
     </div>
   );
 }

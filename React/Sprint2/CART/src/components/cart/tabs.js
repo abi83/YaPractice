@@ -6,6 +6,7 @@ export const Tabs = () => {
   return (
     <div className={`${styles.tabs}`}>
       <Tab text="Товары в корзине" value="items" active />
+      <Tab text="Отложенные товары" />
     </div>
   );
 };

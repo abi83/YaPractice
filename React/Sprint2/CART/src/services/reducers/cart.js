@@ -3,7 +3,7 @@ import {
   CANCEL_PROMO,
   DECREASE_ITEM,
   INCREASE_ITEM,
-  TAB_SWITCH,
+  TAB_SWITCH
 } from '../actions/cart';
 import { recommendedItems, items } from '../initialData';
 
@@ -12,8 +12,8 @@ const initialState = {
 
   recommendedItems,
 
-  promoCode: '',
-  promoDiscount: null,
+  promoCode: 'PROMOCODE',
+  promoDiscount: 50,
 
   currentTab: 'items'
 };

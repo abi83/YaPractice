@@ -5,6 +5,9 @@ import rec2 from '../images/rec-2.png';
 import rec3 from '../images/rec-3.png';
 import rec4 from '../images/rec-4.png';
 
+import delivery1 from '../images/express.svg';
+import delivery2 from '../images/standart.svg';
+
 export const getItemsRequest = async () => {
   return await new Promise(resolve =>
     setTimeout(() => {
@@ -30,6 +33,32 @@ export const getItemsRequest = async () => {
       });
     }, 1500)
   );
+};
+
+export const getDeliveryMethodsRequest = async () => {
+  return await new Promise(resolve => {
+    setTimeout(() => {
+      resolve({
+        success: true,
+        data: [
+          {
+            thumb: delivery1,
+            id: 1,
+            text: 'Экспресс доставка',
+            duration: '7-14 дней',
+            price: 4000
+          },
+          {
+            thumb: delivery2,
+            id: 2,
+            text: 'Обычная доставка',
+            duration: '30-45 дней',
+            price: 0
+          }
+        ]
+      });
+    }, 1500);
+  });
 };
 
 export const getRecommendedItemsRequest = async () => {
@@ -79,6 +108,16 @@ export const applyPromoCodeRequest = async code => {
     result.success = false;
     result.discount = 0;
   }
+  return await new Promise(resolve =>
+    setTimeout(() => {
+      resolve(result);
+    }, 1500)
+  );
+};
+
+export const orderCheckoutRequest = async order => {
+  const result = { success: true, data: { id: Math.floor(Math.random() * 1000) + 2033 } };
+
   return await new Promise(resolve =>
     setTimeout(() => {
       resolve(result);

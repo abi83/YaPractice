@@ -16,6 +16,9 @@ import {
 } from '../actions/cart';
 
 const initialState = {
+  featured: [],
+  postponed: [],
+
   items: [],
   itemsRequest: false,
   itemsFailed: false,
@@ -23,6 +26,8 @@ const initialState = {
   recommendedItems: [],
   recommendedItemsRequest: false,
   recommendedItemsFailed: false,
+
+  postponedItems: [],
 
   promoCode: '',
   promoDiscount: null,
@@ -46,12 +51,7 @@ export const cartReducer = (state = initialState, action) => {
     case GET_ITEMS_FAILED: {
       return { ...state, itemsFailed: true, itemsRequest: false };
     }
-    case TAB_SWITCH: {
-      return {
-        ...state,
-        currentTab: state.currentTab === 'items' ? 'postponed' : 'items'
-      };
-    }
+
     case GET_RECOMMENDED_ITEMS_REQUEST: {
       return {
         ...state,
@@ -68,6 +68,13 @@ export const cartReducer = (state = initialState, action) => {
     }
     case GET_RECOMMENDED_ITEMS_FAILED: {
       return { ...state, recommendedItemsFailed: true, recommendedItemsRequest: false };
+    }
+
+    case TAB_SWITCH: {
+      return {
+        ...state,
+        currentTab: state.currentTab === 'items' ? 'postponed' : 'items'
+      };
     }
     case INCREASE_ITEM: {
       return {

@@ -23,7 +23,6 @@ export default function SuggestInput({ onChange, value }) {
 }
 
 export const Delivery = () => {
-  // const [address, setAddress] = useState('');
 
   const address = useSelector(store=>store.delivery.deliveryForm.address);
   const dispatch = useDispatch();

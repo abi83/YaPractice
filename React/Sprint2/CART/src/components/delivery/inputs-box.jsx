@@ -7,16 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import React from 'react';
 
 export const InputsBox = () => {
-  // const { deliveryForm } = {
-  //   deliveryForm: {
-  //     name: '',
-  //     phone: '',
-  //     address: '',
-  //     unitNumber: '',
-  //     intercom: '',
-  //     floor: ''
-  //   }
-  // };
 const { deliveryForm } = useSelector(state => state.delivery);
 const dispatch = useDispatch();
 

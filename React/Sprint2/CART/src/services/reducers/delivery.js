@@ -55,7 +55,8 @@ export const deliveryReducer = (state = deliveryInitialState, action) => {
     }
     case SET_DELIVERY_FORM_VALUE: {
       return {
-        ...state
+        ...state,
+        deliveryForm: {[action.field]: action.value}
       };
     }
     default: {

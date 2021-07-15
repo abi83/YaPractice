@@ -3,25 +3,29 @@ import { MainButton } from '../../ui/main-button/main-button';
 import styles from './total-price.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { NEXT_STEP, PREVIOUS_STEP } from '../../services/actions';
+import { orderCheckout } from '../../services/actions/checkout';
 import { priceFormat, totalPriceSelector } from '../common/utils';
+import { Loader } from '../../ui/loader/loader';
 
 export const TotalPrice = () => {
   const totalPrice = useSelector(totalPriceSelector);
 
   const discount = useSelector(state => state.cart.promoDiscount);
 
+  const { orderCheckoutRequest } = useSelector(state => state.checkout);
+
   const price = discount ? totalPrice - totalPrice * (discount / 100) : totalPrice;
-
-  const step = useSelector(state => state.step);
-  
   const dispatch = useDispatch();
-
+  const step = useSelector(state => state.step);
   const prev = () => {
-    dispatch({type:PREVIOUS_STEP})
+    dispatch({
+      type: PREVIOUS_STEP
+    });
   };
-
   const next = () => {
-    dispatch({type:NEXT_STEP})
+    dispatch({
+      type: NEXT_STEP
+    });
   };
 
   const submitButtonText = step === 'checkout' ? 'Оформить заказ' : 'Продолжить оформление';
@@ -39,7 +43,9 @@ export const TotalPrice = () => {
     [step]
   );
 
-  const confirmOrder = () => {};
+  const confirmOrder = () => {
+    dispatch(orderCheckout());
+  };
 
   const nextAction = step === 'delivery' || step === 'cart' ? next : confirmOrder;
 
@@ -54,7 +60,7 @@ export const TotalPrice = () => {
           </MainButton>
         )}
         <MainButton onClick={nextAction} type="button">
-          {submitButtonText}
+          {orderCheckoutRequest ? <Loader size="small" inverse={true} /> : submitButtonText}
         </MainButton>
       </div>
     </div>

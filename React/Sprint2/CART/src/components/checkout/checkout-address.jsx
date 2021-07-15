@@ -3,23 +3,12 @@ import { useSelector } from 'react-redux';
 import styles from './checkout-address.module.css';
 
 export const CheckoutAddress = ({ extraClass }) => {
-  const { deliveryForm } = {
-    deliveryForm: {
-      name: '',
-      phone: '',
-      address: '',
-      unitNumber: '',
-      intercom: '',
-      floor: ''
-    }
-  };
-
-  const { deliveryMethod } = useSelector(state => ({
+  const { deliveryForm, deliveryMethod } = useSelector(state => ({
+    deliveryForm: state.delivery.deliveryForm,
     deliveryMethod: state.delivery.deliveryMethods.find(
       method => method.id === state.delivery.selectedDeliveryId
     )
   }));
-
   return (
     <ul className={`${styles.container} ${extraClass}`}>
       <li className={styles.textbox}>

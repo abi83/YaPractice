@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 const title = { cart: 'Корзина', delivery: 'Доставка', checkout: 'Подтверждение заказа' };
 
 function App() {
-  const step = useSelector(store => store.step)
+  const step = useSelector(state => state.step);
 
   const content = useMemo(
     () => {
@@ -19,8 +19,12 @@ function App() {
         case 'cart': {
           return <Cart />;
         }
-        case 'delivery':{return <Delivery />}
-        case 'checkout':{return <Checkout />}
+        case 'delivery': {
+          return <Delivery />;
+        }
+        case 'checkout': {
+          return <Checkout />;
+        }
         default: {
           return <Cart />;
         }
@@ -28,7 +32,6 @@ function App() {
     },
     [step]
   );
-
   return (
     <div className={styles.app}>
       <Title

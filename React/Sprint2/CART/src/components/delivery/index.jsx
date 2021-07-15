@@ -4,6 +4,8 @@ import { InputsBox } from './inputs-box';
 import styles from './delivery.module.css';
 import { DeliveryMethod } from './delivery-method';
 import { MapSuggestComponent } from './delivery-suggest-input';
+import { SET_DELIVERY_FORM_VALUE } from '../../services/actions/delivery';
+import { useDispatch, useSelector } from 'react-redux';
 
 const mapState = {
   center: [55.753994, 37.622093],

@@ -3,20 +3,20 @@ import {
   CANCEL_PROMO,
   DECREASE_ITEM,
   INCREASE_ITEM,
-  TAB_SWITCH,
   GET_ITEMS_FAILED,
   GET_ITEMS_REQUEST,
-  GET_ITEMS_SUCCESS
+  GET_ITEMS_SUCCESS,
+  TAB_SWITCH
 } from '../actions/cart';
-import { recommendedItems, items } from '../initialData';
+import { recommendedItems } from '../initialData';
 
 const initialState = {
   items: [],
-
-  recommendedItems,
   itemsRequest: false,
   itemsFailed: false,
-  
+
+  recommendedItems,
+
   promoCode: 'PROMOCODE',
   promoDiscount: 50,
 
@@ -25,6 +25,18 @@ const initialState = {
 
 export const cartReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ITEMS_REQUEST: {
+      return {
+        ...state,
+        itemsRequest: true
+      };
+    }
+    case GET_ITEMS_SUCCESS: {
+      return { ...state, itemsFailed: false, items: action.items, itemsRequest: false };
+    }
+    case GET_ITEMS_FAILED: {
+      return { ...state, itemsFailed: true, itemsRequest: false };
+    }
     case TAB_SWITCH: {
       return {
         ...state,
@@ -55,27 +67,6 @@ export const cartReducer = (state = initialState, action) => {
         ...state,
         promoCode: '',
         promoDiscount: null
-      };
-    }
-    case GET_ITEMS_FAILED: {
-      return {
-        ...state,
-        itemsRequest: false,
-        itemsFailed: true,
-      };
-    }
-    case GET_ITEMS_REQUEST: {
-      return {
-        ...state,
-        itemsRequest: true,
-      };
-    }
-    case GET_ITEMS_SUCCESS: {
-      return {
-        ...state,
-        itemsRequest: false,
-        itemsFailed: false,
-        items: action.items,
       };
     }
     default: {

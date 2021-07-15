@@ -13,10 +13,16 @@ export const TotalPrice = () => {
   const price = discount ? totalPrice - totalPrice * (discount / 100) : totalPrice;
 
   const step = useSelector(state => state.step);
+  
+  const dispatch = useDispatch();
 
-  const prev = () => {};
+  const prev = () => {
+    dispatch({type:PREVIOUS_STEP})
+  };
 
-  const next = () => {};
+  const next = () => {
+    dispatch({type:NEXT_STEP})
+  };
 
   const submitButtonText = step === 'checkout' ? 'Оформить заказ' : 'Продолжить оформление';
 

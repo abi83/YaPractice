@@ -1,17 +1,33 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import styles from './recommend.module.css';
 import { Title } from '../../ui/title/title';
 import { RecommendItem } from './recommend-item';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRecommendedItems } from '../../services/actions/cart';
 import { Loader } from '../../ui/loader/loader';
 
 export const Recommend = ({ extraClass }) => {
+  const dispatch = useDispatch();
+
   const { recommendedItems, recommendedItemsRequest } = useSelector(state => state.cart);
 
+  useEffect(
+    () => {
+      dispatch(getRecommendedItems());
+    },
+    [dispatch]
+  );
+
   const content = useMemo(
-    () => (
+    () => {
+      return recommendedItemsRequest ? (
         <Loader size="large" />
-    ),
+      ) : (
+        recommendedItems.map((item, index) => {
+          return <RecommendItem key={index} {...item} />;
+        })
+      );
+    },
     [recommendedItemsRequest, recommendedItems]
   );
 

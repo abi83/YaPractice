@@ -4,8 +4,8 @@ export default function DropTarget(props) {
   const { puzzleElement } = props;
   return (
     <li
+      onDragOver={(e) => e.preventDefault()}
       className="listItem"
-      onDragOver={(e)=>e.preventDefault()}
     >
       {puzzleElement.elementSrc && (
         <img

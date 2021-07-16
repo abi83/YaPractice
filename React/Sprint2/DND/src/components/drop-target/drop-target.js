@@ -5,6 +5,7 @@ export default function DropTarget(props) {
   return (
     <li
       className="listItem"
+      onDragOver={(e)=>e.preventDefault()}
     >
       {puzzleElement.elementSrc && (
         <img

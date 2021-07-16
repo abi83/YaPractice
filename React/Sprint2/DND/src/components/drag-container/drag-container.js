@@ -29,6 +29,7 @@ export default function DragContainer() {
 
     setDraggedElements(
       draggedElements.map((element, elementIndex) => {
+        if (element.id === draggedElement.id) return {};
         return elementIndex === index ? draggedElement : element;
       })
     );
@@ -56,6 +57,7 @@ export default function DragContainer() {
             dropTargetIndex={index}
             puzzleElement={item}
             handleDrop={handleDrop}
+            handleDrag={handleDrag}
           />
         ))}
       </ul>

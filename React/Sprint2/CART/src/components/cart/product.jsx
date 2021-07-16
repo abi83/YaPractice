@@ -11,12 +11,22 @@ export const Product = ({ src, id, text, qty, price }) => {
   const dispatch = useDispatch();
   const discount = useSelector(state => state.cart.promoDiscount);
   const discountedPrice = ((price - price * (discount / 100)) * qty).toFixed(0);
+
+  const [{ opacity }, ref] = useDrag({
+    type: 'items',
+    item: { id },
+    collect: monitor => ({
+      opacity: monitor.isDragging() ? 0.5 : 1
+    })
+  })
+
   const onDelete = () => {
     dispatch({
       type: DELETE_ITEM,
       id
     });
   };
+
   const decrease = () => {
     if (qty === 1) {
       onDelete();
@@ -35,8 +45,8 @@ export const Product = ({ src, id, text, qty, price }) => {
   };
 
   return (
-    <div className={`${styles.product}`}>
-      <div className={styles.productBox}>
+    <div className={`${styles.product}`} style={{opacity:opacity}}>
+      <div className={styles.productBox} ref={ref}>
         <img className={styles.img} src={src} alt="фото товара." />
         <p className={styles.text}>{text}</p>
       </div>

@@ -3,6 +3,7 @@ import { applyPromoCodeRequest, getItemsRequest, getRecommendedItemsRequest } fr
 export const INCREASE_ITEM = 'INCREASE_ITEM';
 export const DECREASE_ITEM = 'DECREASE_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
+export const ADD_ITEM = 'ADD_ITEM';
 
 export const GET_ITEMS_REQUEST = 'GET_ITEMS_REQUEST';
 export const GET_ITEMS_SUCCESS = 'GET_ITEMS_SUCCESS';
@@ -17,12 +18,16 @@ export const APPLY_PROMO_SUCCESS = 'APPLY_PROMO_SUCCESS';
 export const APPLY_PROMO_FAILED = 'APPLY_PROMO_FAILED';
 export const CANCEL_PROMO = 'CANCEL_PROMO';
 
+export const ADD_POSTPONED_ITEM = 'ADD_POSTPONED_ITEM';
+export const DELETE_POSTPONED_ITEM = 'DELETE_POSTPONED_ITEM';
+
 export const TAB_SWITCH = 'TAB_SWITCH';
 
 export function applyPromo(code) {
   return function(dispatch) {
     dispatch({
-      type: APPLY_PROMO_REQUEST
+      type: APPLY_PROMO_REQUEST,
+      code
     });
     applyPromoCodeRequest(code).then(res => {
       if (res && res.success) {

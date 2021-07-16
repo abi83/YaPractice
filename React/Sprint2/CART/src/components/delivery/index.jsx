@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useCallback, useState } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { YMaps, Map } from 'react-yandex-maps';
 import { InputsBox } from './inputs-box';
 import styles from './delivery.module.css';
 import { DeliveryMethod } from './delivery-method';
-import { MapSuggestComponent } from './delivery-suggest-input';
-import { SET_DELIVERY_FORM_VALUE } from '../../services/actions/delivery';
 import { useDispatch, useSelector } from 'react-redux';
+import { SET_DELIVERY_FORM_VALUE } from '../../services/actions/delivery';
+import { MapSuggestComponent } from './delivery-suggest-input';
 
 const mapState = {
   center: [55.753994, 37.622093],
@@ -23,17 +23,15 @@ export default function SuggestInput({ onChange, value }) {
 }
 
 export const Delivery = () => {
-
-  const address = useSelector(store=>store.delivery.deliveryForm.address);
+  const address = useSelector(state => state.delivery.deliveryForm.address);
   const dispatch = useDispatch();
+  const setAddress = address => {
+    dispatch({ type: SET_DELIVERY_FORM_VALUE, field: 'address', value: address });
+  };
   const ymaps = useRef(null);
   const placemarkRef = useRef(null);
   const mapRef = useRef(null);
 
-  const setAddress = (address)=>{
-    dispatch({ type: SET_DELIVERY_FORM_VALUE, field: 'address', value: address })
-  }
-  
   const getGeocodeResult = async criteria => {
     return !!ymaps.current && !!criteria ? await ymaps.current.geocode(criteria) : null;
   };

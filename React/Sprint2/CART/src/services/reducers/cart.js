@@ -3,6 +3,7 @@ import {
   CANCEL_PROMO,
   DECREASE_ITEM,
   INCREASE_ITEM,
+  ADD_ITEM,
   GET_ITEMS_FAILED,
   GET_ITEMS_REQUEST,
   GET_ITEMS_SUCCESS,
@@ -12,7 +13,9 @@ import {
   TAB_SWITCH,
   GET_RECOMMENDED_ITEMS_FAILED,
   GET_RECOMMENDED_ITEMS_REQUEST,
-  GET_RECOMMENDED_ITEMS_SUCCESS
+  GET_RECOMMENDED_ITEMS_SUCCESS,
+  ADD_POSTPONED_ITEM,
+  DELETE_POSTPONED_ITEM
 } from '../actions/cart';
 
 const initialState = {
@@ -95,6 +98,12 @@ export const cartReducer = (state = initialState, action) => {
     case DELETE_ITEM: {
       return { ...state, items: [...state.items].filter(item => item.id !== action.id) };
     }
+    case ADD_ITEM: {
+      return {
+        ...state,
+        items: [...state.items, ...state.postponed.filter(item => item.id === action.id)]
+      };
+    }
     case APPLY_PROMO_FAILED: {
       return {
         ...state,
@@ -125,6 +134,15 @@ export const cartReducer = (state = initialState, action) => {
         promoCode: '',
         promoDiscount: null
       };
+    }
+    case ADD_POSTPONED_ITEM: {
+      return {
+        ...state,
+        postponed: [...state.postponed, ...state.items.filter(item => item.id === action.id)]
+      };
+    }
+    case DELETE_POSTPONED_ITEM: {
+      return { ...state, postponed: [...state.postponed].filter(item => item.id !== action.id) };
     }
     default: {
       return state;

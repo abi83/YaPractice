@@ -10,14 +10,20 @@ import { Loader } from '../../ui/loader/loader';
 
 export const ProductsContainer = () => {
   const dispatch = useDispatch();
-  const { items, promoCode, promoDiscount, promoRequest, promoFailed, itemsRequest } = useSelector(
-    state => state.cart
-  );
+  const {
+    items,
+    postponed,
+    promoCode,
+    promoDiscount,
+    promoRequest,
+    promoFailed,
+    itemsRequest
+  } = useSelector(state => state.cart);
   const inputRef = useRef(null);
 
   useEffect(
     () => {
-      dispatch(getItems());
+      if (!items.length && !postponed.length) dispatch(getItems());
     },
     [dispatch]
   );

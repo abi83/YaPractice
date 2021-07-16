@@ -5,6 +5,7 @@ import styles from './product.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { DECREASE_ITEM, DELETE_ITEM, INCREASE_ITEM } from '../../services/actions/cart';
 import { priceFormat } from '../common/utils';
+import { useDrag } from 'react-dnd';
 
 export const Product = ({ src, id, text, qty, price }) => {
   const dispatch = useDispatch();
@@ -32,10 +33,13 @@ export const Product = ({ src, id, text, qty, price }) => {
       id
     });
   };
+
   return (
     <div className={`${styles.product}`}>
-      <img className={styles.img} src={src} alt="фото товара." />
-      <p className={styles.text}>{text}</p>
+      <div className={styles.productBox}>
+        <img className={styles.img} src={src} alt="фото товара." />
+        <p className={styles.text}>{text}</p>
+      </div>
       <div className={styles.amountbox}>
         <AmountButton onClick={decrease}>-</AmountButton>
         <p className={styles.amount}>{qty}</p>

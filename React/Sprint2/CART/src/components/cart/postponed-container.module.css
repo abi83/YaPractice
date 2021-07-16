@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.text {
+  margin: 8px auto 8px 0;
+}
+
+.postponed {
+  padding: 40px 80px 0;
+  min-height: 300px;
+}
+
+.postponedMessageText {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: #292929;
+  margin-bottom: 20px;
+}

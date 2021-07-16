@@ -1,19 +1,17 @@
 import styles from './inputs-box.module.css';
 import { Input } from '../../ui/input/input';
-import { SET_DELIVERY_FORM_VALUE } from '../../services/actions/delivery';
-import { useDispatch, useSelector } from 'react-redux';
-
-
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { SET_DELIVERY_FORM_VALUE } from '../../services/actions/delivery';
 
 export const InputsBox = () => {
-const { deliveryForm } = useSelector(state => state.delivery);
-const dispatch = useDispatch();
+  const { deliveryForm } = useSelector(state => state.delivery);
+
+  const dispatch = useDispatch();
 
   const onChange = e => {
     dispatch({ type: SET_DELIVERY_FORM_VALUE, field: e.target.name, value: e.target.value });
   };
-
   return (
     <div className={`${styles.container}`}>
       <ul className={styles.row}>

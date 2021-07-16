@@ -8,12 +8,6 @@
   padding: 20px 0;
 }
 
-.product::before {
-  content: url('../../images/drag.svg');
-  position: absolute;
-  left: -24px;
-}
-
 .img {
   border: 1px solid #EBEBEB;
   box-sizing: border-box;
@@ -67,6 +61,19 @@
   text-decoration: line-through;
 }
 
+.productBox {
+  display: flex;
+  align-items: center;
+}
+
+.productBox::before {
+  content: url('../../images/drag.svg');
+  display: block;
+  position: absolute;
+  left: -24px;
+  cursor: move;
+}
+
 .amount {
   margin: 0 10px;
 }
@@ -95,3 +102,4 @@
     margin: 0;
   }
 }
+

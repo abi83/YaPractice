@@ -1,6 +1,20 @@
 .postponed {
-  padding: 40px 80px 0;
-  min-height: 300px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-shadow: inset 0px -1px 0px rgba(41, 41, 41, 0.13);
+  padding: 20px 0;
+}
+
+.img {
+  border: 1px solid #EBEBEB;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-right: 20px;
+  width: 80px;
+  height: 80px;
 }
 
 .text {
@@ -8,7 +22,57 @@
   font-weight: normal;
   font-size: 16px;
   line-height: 20px;
-  text-align: center;
   color: #292929;
-  margin-bottom: 20px;
+  margin: 0 20px 0 0;
+  max-width: 320px;
 }
+
+.price {
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  min-width: 74px;
+}
+
+.price {
+  color: #3C39EC;
+}
+
+.exPrice {
+  color: #292929;
+  text-decoration: line-through;
+}
+
+.postponedBox {
+  display: flex;
+  align-items: center;
+}
+
+.postponedBox::before {
+  content: url('../../images/drag.svg');
+  display: block;
+  position: absolute;
+  left: -24px;
+  cursor: move;
+}
+
+@media (max-width: 550px) {
+  .postponed {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .text {
+    margin: 20px 0;
+    max-width: 100%;
+    text-align: flex-start;
+  }
+
+  .img {
+    margin: 0;
+  }
+}
+

@@ -17,3 +17,7 @@
   color: #3C39EC;
   box-shadow: inset 0px -2px 0px #3C39EC;
 }
+
+.onHover {
+  box-shadow: inset 0px -2px 0px #3C39EC;
+}

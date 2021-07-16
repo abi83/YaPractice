@@ -25,6 +25,19 @@ export default function DragContainer() {
     e.preventDefault();
     setDraggedElement(currentElement);
   };
+  
+const handleDrop = (e, index) => {
+  e.preventDefault();
+  setSourceElements([
+    ...sourceElements.filter((element) => element.id !== draggedElement.id)
+  ]);
+
+  setDraggedElements(
+    draggedElements.map((element, ind) => ind === index ? draggedElement : element)
+  );
+
+  setDraggedElement({});
+};
 
   return (
     <section className="container">
@@ -37,6 +50,7 @@ export default function DragContainer() {
       <ul className="list" style={{ backgroundImage: `url(${puzzleImage})` }}>
         {draggedElements.map((item, index) => (
           <DropTarget
+            handleDrop={handleDrop}
             key={index}
             dropTargetIndex={index}
             puzzleElement={item}

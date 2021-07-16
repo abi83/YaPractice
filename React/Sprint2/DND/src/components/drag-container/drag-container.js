@@ -21,23 +21,25 @@ export default function DragContainer() {
     setDraggedElements([...emptyPuzzleData]);
   }, []);
 
+  const handleDrop = (e, index) => {
+    e.preventDefault();
+    setSourceElements([
+      ...sourceElements.filter((element) => element.id !== draggedElement.id)
+    ]);
+
+    setDraggedElements(
+      draggedElements.map((element, elementIndex) => {
+        return elementIndex === index ? draggedElement : element;
+      })
+    );
+
+    setDraggedElement({});
+  };
+
   const handleDrag = (e, currentElement) => {
     e.preventDefault();
     setDraggedElement(currentElement);
   };
-  
-const handleDrop = (e, index) => {
-  e.preventDefault();
-  setSourceElements([
-    ...sourceElements.filter((element) => element.id !== draggedElement.id)
-  ]);
-
-  setDraggedElements(
-    draggedElements.map((element, ind) => ind === index ? draggedElement : element)
-  );
-
-  setDraggedElement({});
-};
 
   return (
     <section className="container">
@@ -50,10 +52,10 @@ const handleDrop = (e, index) => {
       <ul className="list" style={{ backgroundImage: `url(${puzzleImage})` }}>
         {draggedElements.map((item, index) => (
           <DropTarget
-            handleDrop={handleDrop}
             key={index}
             dropTargetIndex={index}
             puzzleElement={item}
+            handleDrop={handleDrop}
           />
         ))}
       </ul>
